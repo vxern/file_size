@@ -1,0 +1,14 @@
+name: file_size
+version: 0.1.0
+
+description: Get a human representation of the size of your files.
+
+homepage: https://github.com/vxern/file_size
+repository: https://github.com/vxern/file_size
+issue_tracker: https://github.com/vxern/file_size/issues
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dev_dependencies:
+  words: ^0.4.4
