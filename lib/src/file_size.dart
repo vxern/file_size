@@ -1,11 +1,11 @@
 import 'package:file_size/src/quantity_display_mode.dart';
-import 'package:file_size/src/unit_display_mode.dart';
+import 'package:file_size/src/unit_conversion.dart';
 import 'package:file_size/src/unit.dart';
 
 String fileSize(
   num quantity, {
   Unit inputUnit = Unit.byte,
-  UnitDisplayMode unitDisplayMode = const BestFitDisplayMode(),
+  UnitConversion unitConversion = const BestFitConversion(),
   QuantityDisplayMode quantityDisplayMode = const FixedPrecisionDisplayMode(),
 }) {
   if (quantityDisplayMode
@@ -25,9 +25,9 @@ String fileSize(
 
   final inputBits = inputUnit.quantityToBits(quantity);
 
-  final outputUnit = switch (unitDisplayMode) {
-    BestFitDisplayMode() => Unit.matchToSize(bits: inputBits),
-    CustomDisplayMode(unit: final unit) => unit,
+  final outputUnit = switch (unitConversion) {
+    BestFitConversion() => Unit.matchToSize(bits: inputBits),
+    CustomUnitConversion(unit: final unit) => unit,
   };
   final outputQuantity = outputUnit.bitsToQuantity(inputBits);
 
