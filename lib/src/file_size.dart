@@ -6,6 +6,7 @@ String fileSize(
   num quantity, {
   Unit inputUnit = Unit.byte,
   UnitConversion unitConversion = const BestFitConversion(),
+  UnitStyle unitStyle = UnitStyle.shortUppercase,
   QuantityDisplayMode quantityDisplayMode = const FixedPrecisionDisplayMode(),
 }) {
   if (quantityDisplayMode
@@ -31,7 +32,12 @@ String fileSize(
   };
   final outputQuantity = outputUnit.bitsToQuantity(inputBits);
 
-  final formattedUnit = outputUnit.symbol;
+  final formattedUnit = switch (unitStyle) {
+    UnitStyle.shortLowercase => outputUnit.symbols.shortLowercase,
+    UnitStyle.shortUppercase => outputUnit.symbols.shortUppercase,
+    UnitStyle.longLowercase => outputUnit.symbols.longLowercase,
+    UnitStyle.longUppercase => outputUnit.symbols.longUppercase,
+  };
   final formattedQuantity = switch (quantityDisplayMode) {
     FixedPrecisionDisplayMode(precision: final precision) =>
       outputQuantity.toStringAsFixed(precision),
