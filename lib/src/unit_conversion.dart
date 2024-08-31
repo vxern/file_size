@@ -5,7 +5,11 @@ sealed class UnitConversion {
 }
 
 final class BestFitConversion extends UnitConversion {
-  const BestFitConversion() : super._();
+  final NumeralSystem numeralSystem;
+
+  const BestFitConversion({
+    this.numeralSystem = NumeralSystem.decimal,
+  }) : super._();
 }
 
 final class CustomUnitConversion extends UnitConversion {

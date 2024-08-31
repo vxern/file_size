@@ -4,11 +4,13 @@ import 'package:file_size/src/unit.dart';
 
 String fileSize(
   num quantity, {
-  Unit inputUnit = Unit.byte,
+  Unit? inputUnit,
   UnitConversion unitConversion = const BestFitConversion(),
   UnitStyle unitStyle = UnitStyle.shortUppercase,
   QuantityDisplayMode quantityDisplayMode = const FixedPrecisionDisplayMode(),
 }) {
+  inputUnit ??= Unit.byte;
+
   if (quantityDisplayMode
       case FixedPrecisionDisplayMode(precision: final precision)) {
     assert(
@@ -27,7 +29,8 @@ String fileSize(
   final inputBits = inputUnit.quantityToBits(quantity);
 
   final outputUnit = switch (unitConversion) {
-    BestFitConversion() => Unit.matchToSize(bits: inputBits),
+    BestFitConversion(numeralSystem: final numeralSystem) =>
+      Unit.matchToSize(bits: inputBits, system: numeralSystem),
     CustomUnitConversion(unit: final unit) => unit,
   };
   final outputQuantity = outputUnit.bitsToQuantity(inputBits);
