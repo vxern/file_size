@@ -1,12 +1,39 @@
 import 'package:decimal/decimal.dart';
 
+/// Represents the display style of the unit.
 enum UnitStyle {
+  /// The unit will be displayed concisely with the prefix in lowercase.
+  ///
+  /// For example, a kilobit will be shown as `kb` and a kilobyte will be shown
+  /// as `kB`.
+  ///
+  /// Note: Bits will be shown as `b` and bytes will be shown as `B` indifferent
+  /// of whether [shortLowercase] or [shortUppercase] is used.
   shortLowercase,
+
+  /// The unit will be displayed concisely with the prefix in uppercase.
+  ///
+  /// For example, a kilobit will be shown as `Kb` and a kilobyte will be shown
+  /// as `KB`.
+  ///
+  /// Note: Bits will be shown as `b` and bytes will be shown as `B` indifferent
+  /// of whether [shortLowercase] or [shortUppercase] is used.
   shortUppercase,
+
+  /// The unit will be displayed in its long form with the prefix in lowercase.
+  ///
+  /// For example, a kilobit will be shown as `kbit` and a kilobyte will be
+  /// shown as `kbyte`.
   longLowercase,
+
+  /// The unit will be displayed in its long form with the prefix in lowercase.
+  ///
+  /// For example, a kilobit will be shown as `Kbit` and a kilobyte will be
+  /// shown as `Kbyte`.
   longUppercase,
 }
 
+/// Defines the symbols used to represent a unit.
 typedef UnitSymbols = ({
   String shortLowercase,
   String shortUppercase,
@@ -14,11 +41,92 @@ typedef UnitSymbols = ({
   String longUppercase,
 });
 
+/// Represents the numeral system of the units used.
 enum NumeralSystem {
+  /// The decimal numeral system, with the factor between sequential magnitudes
+  /// being 1000 or 10^3. This is the common system used to represent sizes of
+  /// data for regular users.
+  ///
+  /// The prefixes belonging to this system are kilo-, mega-, giga-, tera-,
+  /// peta-, exa-, zetta-, and yotta-.
+  ///
+  /// Prefixes are abbreviated as K, M, G, T, P, E, Z, and Y respectively.
+  ///
+  /// Example units include Kilobits (Kb/Kbit) and Megabytes (MB/Mbyte).
   decimal,
+
+  /// The binary numeral system, with the factor between sequential magnitudes
+  /// being 1024 or 2^10. Commonly used in Linux systems.
+  ///
+  /// The prefixes belonging to this system are kibi-, mebi-, gibi-, tebi-,
+  /// pebi-, exbi-, zebi-, and yobi-.
+  ///
+  /// Prefixes are abbreviated as Ki, Mi, Gi, Ti, Pi, Ei, Zi, and Yi
+  /// respectively.
+  ///
+  /// Example units include Kibibits (Kib/Kibit) and Mebibytes (MiB/Mibyte).
   binary,
 }
 
+/// Represents a unit used for describing the size of digital information.
+///
+/// The library defines a set of units that should cover all standard use cases,
+/// but custom units can be defined simply by extending [Unit] as follows:
+///
+/// ```dart
+/// extension ExoticUnit on Unit {
+///   static final nibble = Unit(
+///     BigInt.from(4),
+///     symbols: (
+///       shortLowercase: 'nybl',
+///       shortUppercase: 'Nybl',
+///       longLowercase: 'nibble',
+///       longUppercase: 'Nibble',
+///     ),
+///   );
+/// }
+/// ```
+///
+///
+///
+/// The library defines the following set of units:
+/// - Basic:
+///   - [bit]
+///   - [byte]
+/// - Decimal:
+///   - [kilobit]
+///   - [kilobyte]
+///   - [megabit]
+///   - [megabyte]
+///   - [gigabit]
+///   - [gigabyte]
+///   - [terabit]
+///   - [terabyte]
+///   - [petabit]
+///   - [petabyte]
+///   - [exabit]
+///   - [exabyte]
+///   - [zettabit]
+///   - [zettabyte]
+///   - [yottabit]
+///   - [yottabyte]
+/// - Binary:
+///   - [kibibit]
+///   - [kibibyte]
+///   - [mebibit]
+///   - [mebibyte]
+///   - [gibibit]
+///   - [gibibyte]
+///   - [tebibit]
+///   - [tebibyte]
+///   - [pebibit]
+///   - [pebibyte]
+///   - [exbibit]
+///   - [exbibyte]
+///   - [zebibit]
+///   - [zebibyte]
+///   - [yobibit]
+///   - [yobibyte]
 final class Unit {
   /// 1 bit
   static final bit = Unit(
@@ -394,6 +502,10 @@ final class Unit {
     ),
   );
 
+  /// A list of units in the decimal numeral system, arranged in order of
+  /// ascending size.
+  ///
+  /// Includes bits and bytes.
   static final List<Unit> decimal = List.unmodifiable([
     Unit.bit,
     Unit.byte,
@@ -415,6 +527,10 @@ final class Unit {
     Unit.yottabyte,
   ]);
 
+  /// A list of units in the binary numeral system, arranged in order of
+  /// ascending size.
+  ///
+  /// Includes bits and bytes.
   static final List<Unit> binary = List.unmodifiable([
     Unit.bit,
     Unit.byte,
@@ -436,11 +552,19 @@ final class Unit {
     Unit.yobibyte,
   ]);
 
+  /// The number of bits this unit is equivalent to.
   final BigInt bits;
+
+  /// The symbols used to represent this unit.
   final UnitSymbols symbols;
 
+  /// Returns an instance of [Unit].
+  ///
+  /// Use this constructor to create custom units.
   const Unit(this.bits, {required this.symbols});
 
+  /// Given a number of [bits] and a [numeralSystem], finds the largest unit
+  /// that accurately describes its magnitude.
   factory Unit.matchToSize({
     required BigInt bits,
     required NumeralSystem numeralSystem,
@@ -458,10 +582,14 @@ final class Unit {
     return Unit.bit;
   }
 
+  /// Given a [quantity], calculates the number of bits equivalent for this
+  /// unit.
   BigInt quantityToBits(num quantity) =>
       (Decimal.parse(quantity.toString()) * Decimal.fromBigInt(bits))
           .floor()
           .toBigInt();
 
-  num bitsToQuantity(BigInt bits) => (bits / this.bits).floor();
+  /// Given a number of [bits], calculates the equivalent in quantity of this
+  /// unit.
+  num bitsToQuantity(BigInt bits) => bits / this.bits;
 }

@@ -1,6 +1,6 @@
 import 'package:file_size/src/quantity_display_mode.dart';
-import 'package:file_size/src/unit_conversion.dart';
 import 'package:file_size/src/unit.dart';
+import 'package:file_size/src/unit_conversion.dart';
 
 String fileSizeAsHuman(
   num quantity, {
