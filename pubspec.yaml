@@ -10,5 +10,8 @@ issue_tracker: https://github.com/vxern/file_size/issues
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
+dependencies:
+  decimal: ^3.0.2
+
 dev_dependencies:
   words: ^0.4.4
