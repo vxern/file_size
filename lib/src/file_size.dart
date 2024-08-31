@@ -30,7 +30,7 @@ String fileSize(
 
   final outputUnit = switch (unitConversion) {
     BestFitConversion(numeralSystem: final numeralSystem) =>
-      Unit.matchToSize(bits: inputBits, system: numeralSystem),
+      Unit.matchToSize(bits: inputBits, numeralSystem: numeralSystem),
     CustomUnitConversion(unit: final unit) => unit,
   };
   final outputQuantity = outputUnit.bitsToQuantity(inputBits);
