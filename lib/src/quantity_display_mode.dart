@@ -7,13 +7,13 @@ sealed class QuantityDisplayMode {
 final class FixedPrecisionDisplayMode extends QuantityDisplayMode {
   final int precision;
 
-  const FixedPrecisionDisplayMode({this.precision = 2});
+  const FixedPrecisionDisplayMode({this.precision = 1});
 }
 
 final class PrecisionDisplayMode extends QuantityDisplayMode {
   final int precision;
 
-  const PrecisionDisplayMode({this.precision = 2});
+  const PrecisionDisplayMode({this.precision = 1});
 }
 
 final class TruncateDisplayMode extends QuantityDisplayMode {
