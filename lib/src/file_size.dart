@@ -1,6 +1,7 @@
 import 'package:file_size/src/quantity_display_mode.dart';
 import 'package:file_size/src/unit.dart';
 import 'package:file_size/src/unit_conversion.dart';
+import 'package:file_size/src/unit_style.dart';
 
 /// Given a [quantity] and (optionally) an [inputUnit], formats the quantity as
 /// a human-readable string.
@@ -84,7 +85,7 @@ String fileSizeToString(
   final outputUnit = unitConversion.bitsToUnit(bits: inputBits);
   final outputQuantity = outputUnit.bitsToQuantity(inputBits);
 
-  final formattedUnit = outputUnit.format(unitStyle: unitStyle);
+  final formattedUnit = unitStyle.format(outputUnit);
   final formattedQuantity =
       quantityDisplayMode.format(outputQuantity, unit: outputUnit);
 

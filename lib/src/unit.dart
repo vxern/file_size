@@ -1,38 +1,5 @@
 import 'package:decimal/decimal.dart';
 
-/// Represents the display style of the unit.
-enum UnitStyle {
-  /// The unit will be displayed concisely with the prefix in lowercase.
-  ///
-  /// For example, a kilobit will be shown as `kb` and a kilobyte will be shown
-  /// as `kB`.
-  ///
-  /// Note: Bits will be shown as `b` and bytes will be shown as `B` indifferent
-  /// of whether [shortLowercase] or [shortUppercase] is used.
-  shortLowercase,
-
-  /// The unit will be displayed concisely with the prefix in uppercase.
-  ///
-  /// For example, a kilobit will be shown as `Kb` and a kilobyte will be shown
-  /// as `KB`.
-  ///
-  /// Note: Bits will be shown as `b` and bytes will be shown as `B` indifferent
-  /// of whether [shortLowercase] or [shortUppercase] is used.
-  shortUppercase,
-
-  /// The unit will be displayed in its long form with the prefix in lowercase.
-  ///
-  /// For example, a kilobit will be shown as `kbit` and a kilobyte will be
-  /// shown as `kbyte`.
-  longLowercase,
-
-  /// The unit will be displayed in its long form with the prefix in lowercase.
-  ///
-  /// For example, a kilobit will be shown as `Kbit` and a kilobyte will be
-  /// shown as `Kbyte`.
-  longUppercase,
-}
-
 /// Defines the symbols used to represent a unit.
 typedef UnitSymbols = ({
   String shortLowercase,
@@ -581,14 +548,6 @@ final class Unit {
 
     return Unit.bit;
   }
-
-  /// Given a [unitStyle], formats the unit as a human-readable string.
-  String format({required UnitStyle unitStyle}) => switch (unitStyle) {
-        UnitStyle.shortLowercase => symbols.shortLowercase,
-        UnitStyle.shortUppercase => symbols.shortUppercase,
-        UnitStyle.longLowercase => symbols.longLowercase,
-        UnitStyle.longUppercase => symbols.longUppercase,
-      };
 
   /// Given a [quantity], calculates the number of bits equivalent for this
   /// unit.
