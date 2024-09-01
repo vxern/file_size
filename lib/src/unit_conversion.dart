@@ -1,3 +1,4 @@
+import 'package:file_size/src/numeral_system.dart';
 import 'package:file_size/src/unit.dart';
 
 /// Defines which unit the file size should be converted into before displaying.
