@@ -84,10 +84,7 @@ String fileSizeToString(
   final outputUnit = unitConversion.bitsToUnit(bits: inputBits);
   final outputQuantity = outputUnit.bitsToQuantity(inputBits);
 
-  final formattedUnit = _formatUnit(
-    outputUnit: outputUnit,
-    unitStyle: unitStyle,
-  );
+  final formattedUnit = outputUnit.format(unitStyle: unitStyle);
   final formattedQuantity = _formatQuantity(
     outputUnit: outputUnit,
     outputQuantity: outputQuantity,
@@ -96,17 +93,6 @@ String fileSizeToString(
 
   return '$formattedQuantity $formattedUnit';
 }
-
-String _formatUnit({
-  required Unit outputUnit,
-  required UnitStyle unitStyle,
-}) =>
-    switch (unitStyle) {
-      UnitStyle.shortLowercase => outputUnit.symbols.shortLowercase,
-      UnitStyle.shortUppercase => outputUnit.symbols.shortUppercase,
-      UnitStyle.longLowercase => outputUnit.symbols.longLowercase,
-      UnitStyle.longUppercase => outputUnit.symbols.longUppercase,
-    };
 
 String _formatQuantity({
   required Unit outputUnit,

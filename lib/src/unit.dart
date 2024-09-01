@@ -582,6 +582,14 @@ final class Unit {
     return Unit.bit;
   }
 
+  /// Given a [unitStyle], formats the unit as a human-readable string.
+  String format({required UnitStyle unitStyle}) => switch (unitStyle) {
+        UnitStyle.shortLowercase => symbols.shortLowercase,
+        UnitStyle.shortUppercase => symbols.shortUppercase,
+        UnitStyle.longLowercase => symbols.longLowercase,
+        UnitStyle.longUppercase => symbols.longUppercase,
+      };
+
   /// Given a [quantity], calculates the number of bits equivalent for this
   /// unit.
   BigInt quantityToBits(num quantity) =>
