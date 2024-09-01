@@ -43,7 +43,8 @@ class PrecisionDisplayMode extends QuantityDisplayMode {
   const PrecisionDisplayMode({this.precision = 1});
 
   @override
-  String format(num quantity, {required Unit unit}) => quantity.toString();
+  String format(num quantity, {required Unit unit}) =>
+      quantity.toStringAsPrecision(precision);
 }
 
 /// The quantity is truncated before being displayed, effectively disregarding
