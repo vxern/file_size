@@ -1,5 +1,4 @@
 import 'package:file_size/src/unit.dart';
-import 'package:file_size/src/unit_symbols.dart';
 
 /// Represents the numeral system of units.
 abstract class NumeralSystem {

@@ -1,4 +1,3 @@
-import 'package:file_size/file_size.dart';
 import 'package:file_size/src/numeral_system.dart';
 import 'package:file_size/src/unit.dart';
 

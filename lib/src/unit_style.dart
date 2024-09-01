@@ -1,5 +1,4 @@
 import 'package:file_size/src/unit.dart';
-import 'package:file_size/src/unit_symbols.dart';
 
 /// Represents the display style of a unit.
 abstract class UnitStyle {
