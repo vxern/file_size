@@ -85,11 +85,8 @@ String fileSizeToString(
   final outputQuantity = outputUnit.bitsToQuantity(inputBits);
 
   final formattedUnit = outputUnit.format(unitStyle: unitStyle);
-  final formattedQuantity = _formatQuantity(
-    outputUnit: outputUnit,
-    outputQuantity: outputQuantity,
-    quantityDisplayMode: quantityDisplayMode,
-  );
+  final formattedQuantity =
+      quantityDisplayMode.format(outputQuantity, unit: outputUnit);
 
   return '$formattedQuantity $formattedUnit';
 }
