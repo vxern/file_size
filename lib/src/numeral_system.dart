@@ -2,6 +2,7 @@ import 'package:file_size/src/unit.dart';
 
 /// Represents the numeral system of units.
 abstract class NumeralSystem {
+  /// A list of units in this numeral system, arranged in ascending order.
   List<Unit> get units;
 
   /// Returns an instance of [NumeralSystem].
@@ -19,10 +20,6 @@ abstract class NumeralSystem {
 ///
 /// Example units include Kilobits (Kb/Kbit) and Megabytes (MB/Mbyte).
 class DecimalSystem extends NumeralSystem {
-  /// A list of units in the decimal numeral system, arranged in order of
-  /// ascending size.
-  ///
-  /// Includes bits and bytes.
   static final List<Unit> _units = List.unmodifiable([
     Unit.bit,
     Unit.byte,
@@ -62,10 +59,6 @@ class DecimalSystem extends NumeralSystem {
 ///
 /// Example units include Kibibits (Kib/Kibit) and Mebibytes (MiB/Mibyte).
 class BinarySystem extends NumeralSystem {
-  /// A list of units in the binary numeral system, arranged in order of
-  /// ascending size.
-  ///
-  /// Includes bits and bytes.
   static final List<Unit> _units = List.unmodifiable([
     Unit.bit,
     Unit.byte,
