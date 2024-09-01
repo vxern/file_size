@@ -2,7 +2,8 @@ import 'package:file_size/src/unit.dart';
 
 /// Defines how the final quantity should be displayed, where the quantity is
 /// the amount of a given unit.
-sealed class QuantityDisplayMode {
+abstract class QuantityDisplayMode {
+  /// Returns an instance of [QuantityDisplayMode].
   const QuantityDisplayMode();
 
   /// Given a [quantity] and a [unit], formats it as a human-readable string.
@@ -13,7 +14,7 @@ sealed class QuantityDisplayMode {
 ///
 /// For example, with a [precision] of 3, a quantity 10.93214 will be displayed
 /// as '10.932', meanwhile 10 will be displayed as '10.000'.
-final class FixedPrecisionDisplayMode extends QuantityDisplayMode {
+class FixedPrecisionDisplayMode extends QuantityDisplayMode {
   /// The fixed precision to display the quantity with.
   ///
   /// The value must be between 0 (inclusive) and 20 (inclusive).
@@ -32,7 +33,7 @@ final class FixedPrecisionDisplayMode extends QuantityDisplayMode {
 /// For example, with a [precision] of 3, a quantity 10.93214 will be displayed
 /// as '10.932', a quantity 10.9 will be displayed as '10.9', and a quantity of
 /// 10 will be displayed as just '10'.
-final class PrecisionDisplayMode extends QuantityDisplayMode {
+class PrecisionDisplayMode extends QuantityDisplayMode {
   /// The precision to display the quantity with.
   ///
   /// The value must be between 1 (inclusive) and 20 (inclusive).
@@ -42,15 +43,14 @@ final class PrecisionDisplayMode extends QuantityDisplayMode {
   const PrecisionDisplayMode({this.precision = 1});
 
   @override
-  String format(num quantity, {required Unit unit}) =>
-      quantity.toStringAsPrecision(precision);
+  String format(num quantity, {required Unit unit}) => quantity.toString();
 }
 
 /// The quantity is truncated before being displayed, effectively disregarding
 /// its fractional part.
 ///
 /// For example, a quantity 10.932 will be displayed as '10'.
-final class TruncateDisplayMode extends QuantityDisplayMode {
+class TruncateDisplayMode extends QuantityDisplayMode {
   /// Returns an instance of [TruncateDisplayMode].
   const TruncateDisplayMode();
 
@@ -76,7 +76,7 @@ final class RoundDisplayMode extends QuantityDisplayMode {
 typedef QuantityFormatter = String Function(num quantity, {required Unit unit});
 
 /// The quantity passes through a custom converter to get its display format.
-final class CustomQuantityDisplayMode extends QuantityDisplayMode {
+class CustomQuantityDisplayMode extends QuantityDisplayMode {
   /// The converter used to format the quantity.
   final QuantityFormatter converter;
 
