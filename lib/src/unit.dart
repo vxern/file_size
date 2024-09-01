@@ -1,12 +1,5 @@
 import 'package:decimal/decimal.dart';
-
-/// Defines the symbols used to represent a unit.
-typedef UnitSymbols = ({
-  String shortLowercase,
-  String shortUppercase,
-  String longLowercase,
-  String longUppercase,
-});
+import 'package:file_size/src/unit_symbols.dart';
 
 /// Represents the numeral system of the units used.
 enum NumeralSystem {
@@ -44,17 +37,10 @@ enum NumeralSystem {
 /// extension ExoticUnit on Unit {
 ///   static final nibble = Unit(
 ///     BigInt.from(4),
-///     symbols: (
-///       shortLowercase: 'nybl',
-///       shortUppercase: 'Nybl',
-///       longLowercase: 'nibble',
-///       longUppercase: 'Nibble',
-///     ),
+///     symbols: const UnitSymbols(shortLowercase: 'nybl'),
 ///   );
 /// }
 /// ```
-///
-///
 ///
 /// The library defines the following set of units:
 /// - Basic:
@@ -98,9 +84,8 @@ final class Unit {
   /// 1 bit
   static final bit = Unit(
     BigInt.from(1),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'b',
-      shortUppercase: 'b',
       longLowercase: 'bit',
       longUppercase: 'Bit',
     ),
@@ -109,9 +94,8 @@ final class Unit {
   /// 8 bits
   static final byte = Unit(
     BigInt.from(8),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'B',
-      shortUppercase: 'B',
       longLowercase: 'byte',
       longUppercase: 'Byte',
     ),
@@ -120,7 +104,7 @@ final class Unit {
   /// 10^3 bits ~~ 1000 bits
   static final kilobit = Unit(
     BigInt.from(1000),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'kb',
       shortUppercase: 'Kb',
       longLowercase: 'kbit',
@@ -131,7 +115,7 @@ final class Unit {
   /// 10^3 bytes ~~ 1000 bytes
   static final kilobyte = Unit(
     BigInt.from(1000) * Unit.byte.bits,
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'kB',
       shortUppercase: 'KB',
       longLowercase: 'kbyte',
@@ -142,7 +126,7 @@ final class Unit {
   /// 10^6 bits ~~ 1000^2 bits
   static final megabit = Unit(
     BigInt.from(1000).pow(2),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'mb',
       shortUppercase: 'Mb',
       longLowercase: 'mbit',
@@ -153,7 +137,7 @@ final class Unit {
   /// 10^6 bytes ~~ 1000^2 bytes
   static final megabyte = Unit(
     BigInt.from(1000).pow(2) * Unit.byte.bits,
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'mB',
       shortUppercase: 'MB',
       longLowercase: 'mbyte',
@@ -164,7 +148,7 @@ final class Unit {
   /// 10^9 bits ~~ 1000^3 bits
   static final gigabit = Unit(
     BigInt.from(1000).pow(3),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'gb',
       shortUppercase: 'Gb',
       longLowercase: 'gbit',
@@ -175,7 +159,7 @@ final class Unit {
   /// 10^9 bytes ~~ 1000^3 bytes
   static final gigabyte = Unit(
     BigInt.from(1000).pow(3) * Unit.byte.bits,
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'gB',
       shortUppercase: 'GB',
       longLowercase: 'gbyte',
@@ -186,7 +170,7 @@ final class Unit {
   /// 10^12 bits ~~ 1000^4 bits
   static final terabit = Unit(
     BigInt.from(1000).pow(4),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'tb',
       shortUppercase: 'Tb',
       longLowercase: 'tbit',
@@ -197,7 +181,7 @@ final class Unit {
   /// 10^12 bytes ~~ 1000^4 bytes
   static final terabyte = Unit(
     BigInt.from(1000).pow(4) * Unit.byte.bits,
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'tB',
       shortUppercase: 'TB',
       longLowercase: 'tbyte',
@@ -208,7 +192,7 @@ final class Unit {
   /// 10^15 bits ~~ 1000^5 bits
   static final petabit = Unit(
     BigInt.from(1000).pow(5),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'pb',
       shortUppercase: 'Pb',
       longLowercase: 'pbit',
@@ -219,7 +203,7 @@ final class Unit {
   /// 10^15 bytes ~~ 1000^5 bytes
   static final petabyte = Unit(
     BigInt.from(1000).pow(5) * Unit.byte.bits,
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'pB',
       shortUppercase: 'PB',
       longLowercase: 'pbyte',
@@ -230,7 +214,7 @@ final class Unit {
   /// 10^18 bits ~~ 1000^6 bits
   static final exabit = Unit(
     BigInt.from(1000).pow(6),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'eb',
       shortUppercase: 'Eb',
       longLowercase: 'ebit',
@@ -241,7 +225,7 @@ final class Unit {
   /// 10^18 bytes ~~ 1000^6 bytes
   static final exabyte = Unit(
     BigInt.from(1000).pow(6) * Unit.byte.bits,
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'eB',
       shortUppercase: 'EB',
       longLowercase: 'ebyte',
@@ -252,7 +236,7 @@ final class Unit {
   /// 10^21 bits ~~ 1000^7 bits
   static final zettabit = Unit(
     BigInt.from(1000).pow(7),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'zb',
       shortUppercase: 'Zb',
       longLowercase: 'zbit',
@@ -263,7 +247,7 @@ final class Unit {
   /// 10^21 bytes ~~ 1000^7 bytes
   static final zettabyte = Unit(
     BigInt.from(1000).pow(7) * Unit.byte.bits,
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'zB',
       shortUppercase: 'ZB',
       longLowercase: 'zbyte',
@@ -274,7 +258,7 @@ final class Unit {
   /// 10^24 bits ~~ 1000^8 bits
   static final yottabit = Unit(
     BigInt.from(1000).pow(8),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'yb',
       shortUppercase: 'Yb',
       longLowercase: 'ybit',
@@ -285,7 +269,7 @@ final class Unit {
   /// 10^24 bytes ~~ 1000^8 bytes
   static final yottabyte = Unit(
     BigInt.from(1000).pow(8) * Unit.byte.bits,
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'yB',
       shortUppercase: 'YB',
       longLowercase: 'ybyte',
@@ -296,7 +280,7 @@ final class Unit {
   /// 2^10 bits ~~ 1024 bits
   static final kibibit = Unit(
     BigInt.from(2).pow(10),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'kib',
       shortUppercase: 'Kib',
       longLowercase: 'kibit',
@@ -307,7 +291,7 @@ final class Unit {
   /// 2^10 bytes ~~ 1024 bytes
   static final kibibyte = Unit(
     BigInt.from(2).pow(13),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'kiB',
       shortUppercase: 'KiB',
       longLowercase: 'kibyte',
@@ -318,7 +302,7 @@ final class Unit {
   /// 2^20 bits ~~ 1024^2 bits
   static final mebibit = Unit(
     BigInt.from(2).pow(20),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'mib',
       shortUppercase: 'Mib',
       longLowercase: 'mibit',
@@ -329,7 +313,7 @@ final class Unit {
   /// 2^20 bytes ~~ 1024^2 bytes
   static final mebibyte = Unit(
     BigInt.from(2).pow(23),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'miB',
       shortUppercase: 'MiB',
       longLowercase: 'mibyte',
@@ -340,7 +324,7 @@ final class Unit {
   /// 2^30 bits ~~ 1024^3 bits
   static final gibibit = Unit(
     BigInt.from(2).pow(30),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'gib',
       shortUppercase: 'Gib',
       longLowercase: 'gibit',
@@ -351,7 +335,7 @@ final class Unit {
   /// 2^30 bytes ~~ 1024^3 bytes
   static final gibibyte = Unit(
     BigInt.from(2).pow(33),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'giB',
       shortUppercase: 'GiB',
       longLowercase: 'gibyte',
@@ -362,7 +346,7 @@ final class Unit {
   /// 2^40 bits ~~ 1024^4 bits
   static final tebibit = Unit(
     BigInt.from(2).pow(40),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'tib',
       shortUppercase: 'Tib',
       longLowercase: 'tibit',
@@ -373,7 +357,7 @@ final class Unit {
   /// 2^40 bytes ~~ 1024^4 bytes
   static final tebibyte = Unit(
     BigInt.from(2).pow(43),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'tiB',
       shortUppercase: 'TiB',
       longLowercase: 'tibyte',
@@ -384,7 +368,7 @@ final class Unit {
   /// 2^50 bits ~~ 1024^5 bits
   static final pebibit = Unit(
     BigInt.from(2).pow(50),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'pib',
       shortUppercase: 'Pib',
       longLowercase: 'pibit',
@@ -395,7 +379,7 @@ final class Unit {
   /// 2^50 bytes ~~ 1024^5 bytes
   static final pebibyte = Unit(
     BigInt.from(2).pow(53),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'piB',
       shortUppercase: 'PiB',
       longLowercase: 'pibyte',
@@ -406,7 +390,7 @@ final class Unit {
   /// 2^60 bits ~~ 1024^6 bits
   static final exbibit = Unit(
     BigInt.from(2).pow(60),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'eib',
       shortUppercase: 'Eib',
       longLowercase: 'eibit',
@@ -417,7 +401,7 @@ final class Unit {
   /// 2^60 bytes ~~ 1024^6 bytes
   static final exbibyte = Unit(
     BigInt.from(2).pow(63),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'eiB',
       shortUppercase: 'EiB',
       longLowercase: 'eibyte',
@@ -428,7 +412,7 @@ final class Unit {
   /// 2^70 bits ~~ 1024^7 bits
   static final zebibit = Unit(
     BigInt.from(2).pow(70),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'zib',
       shortUppercase: 'Zib',
       longLowercase: 'zibit',
@@ -439,7 +423,7 @@ final class Unit {
   /// 2^70 bytes ~~ 1024^7 bytes
   static final zebibyte = Unit(
     BigInt.from(2).pow(73),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'ziB',
       shortUppercase: 'ZiB',
       longLowercase: 'zibyte',
@@ -450,7 +434,7 @@ final class Unit {
   /// 2^80 bits ~~ 1024^8 bits
   static final yobibit = Unit(
     BigInt.from(2).pow(80),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'yib',
       shortUppercase: 'Yib',
       longLowercase: 'yibit',
@@ -461,7 +445,7 @@ final class Unit {
   /// 2^80 bytes ~~ 1024^8 bytes
   static final yobibyte = Unit(
     BigInt.from(2).pow(83),
-    symbols: (
+    symbols: const UnitSymbols(
       shortLowercase: 'yiB',
       shortUppercase: 'YiB',
       longLowercase: 'yibyte',
