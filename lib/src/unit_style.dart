@@ -2,7 +2,7 @@ import 'package:file_size/src/unit.dart';
 import 'package:file_size/src/unit_symbols.dart';
 
 /// Represents the display style of a unit.
-abstract class UnitStyle<S extends UnitSymbols> {
+abstract class UnitStyle {
   /// Returns an instance of [UnitStyle].
   const UnitStyle();
 
@@ -17,12 +17,12 @@ abstract class UnitStyle<S extends UnitSymbols> {
 ///
 /// Note: Bits will be shown as `b` and bytes will be shown as `B` indifferent
 /// of whether [ShortLowercaseStyle] or [ShortUppercaseStyle] are used.
-class ShortLowercaseStyle extends UnitStyle<UnitSymbols> {
+class ShortLowercaseStyle extends UnitStyle {
   /// Returns an instance of [ShortLowercaseStyle].
   const ShortLowercaseStyle();
 
   @override
-  String format(Unit<UnitSymbols> unit) => unit.symbols.shortLowercase;
+  String format(Unit unit) => unit.symbols.shortLowercase;
 }
 
 /// The unit will be displayed concisely with the prefix in uppercase.
@@ -32,12 +32,12 @@ class ShortLowercaseStyle extends UnitStyle<UnitSymbols> {
 ///
 /// Note: Bits will be shown as `b` and bytes will be shown as `B` indifferent
 /// of whether [ShortLowercaseStyle] or [ShortUppercaseStyle] are used.
-class ShortUppercaseStyle extends UnitStyle<UnitSymbols> {
+class ShortUppercaseStyle extends UnitStyle {
   /// Returns an instance of [ShortUppercaseStyle].
   const ShortUppercaseStyle();
 
   @override
-  String format(Unit<UnitSymbols> unit) =>
+  String format(Unit unit) =>
       unit.symbols.shortUppercase ?? unit.symbols.shortLowercase;
 }
 
@@ -45,12 +45,12 @@ class ShortUppercaseStyle extends UnitStyle<UnitSymbols> {
 ///
 /// For example, a kilobit will be shown as `kbit` and a kilobyte will be
 /// shown as `kbyte`.
-class LongLowercaseStyle extends UnitStyle<UnitSymbols> {
+class LongLowercaseStyle extends UnitStyle {
   /// Returns an instance of [LongLowercaseStyle].
   const LongLowercaseStyle();
 
   @override
-  String format(Unit<UnitSymbols> unit) =>
+  String format(Unit unit) =>
       unit.symbols.longLowercase ?? unit.symbols.shortLowercase;
 }
 
@@ -58,11 +58,11 @@ class LongLowercaseStyle extends UnitStyle<UnitSymbols> {
 ///
 /// For example, a kilobit will be shown as `Kbit` and a kilobyte will be
 /// shown as `Kbyte`.
-class LongUppercaseStyle extends UnitStyle<UnitSymbols> {
+class LongUppercaseStyle extends UnitStyle {
   /// Returns an instance of [LongUppercaseStyle].
   const LongUppercaseStyle();
 
   @override
-  String format(Unit<UnitSymbols> unit) =>
+  String format(Unit unit) =>
       unit.symbols.longUppercase ?? unit.symbols.shortLowercase;
 }

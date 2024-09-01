@@ -1,5 +1,4 @@
 import 'package:decimal/decimal.dart';
-import 'package:file_size/src/numeral_system.dart';
 import 'package:file_size/src/unit_symbols.dart';
 
 /// Represents a unit used for describing the size of digital information.
@@ -54,7 +53,7 @@ import 'package:file_size/src/unit_symbols.dart';
 ///   - [zebibyte]
 ///   - [yobibit]
 ///   - [yobibyte]
-final class Unit<S extends UnitSymbols> {
+final class Unit {
   /// 1 bit
   static final bit = Unit(
     BigInt.from(1),
@@ -427,56 +426,6 @@ final class Unit<S extends UnitSymbols> {
     ),
   );
 
-  /// A list of units in the decimal numeral system, arranged in order of
-  /// ascending size.
-  ///
-  /// Includes bits and bytes.
-  static final List<Unit> decimal = List.unmodifiable([
-    Unit.bit,
-    Unit.byte,
-    Unit.kilobit,
-    Unit.kilobyte,
-    Unit.megabit,
-    Unit.megabyte,
-    Unit.gigabit,
-    Unit.gigabyte,
-    Unit.terabit,
-    Unit.terabyte,
-    Unit.petabit,
-    Unit.petabyte,
-    Unit.exabit,
-    Unit.exabyte,
-    Unit.zettabit,
-    Unit.zettabyte,
-    Unit.yottabit,
-    Unit.yottabyte,
-  ]);
-
-  /// A list of units in the binary numeral system, arranged in order of
-  /// ascending size.
-  ///
-  /// Includes bits and bytes.
-  static final List<Unit> binary = List.unmodifiable([
-    Unit.bit,
-    Unit.byte,
-    Unit.kibibit,
-    Unit.kibibyte,
-    Unit.mebibit,
-    Unit.mebibyte,
-    Unit.gibibit,
-    Unit.gibibyte,
-    Unit.tebibit,
-    Unit.tebibyte,
-    Unit.pebibit,
-    Unit.pebibyte,
-    Unit.exbibit,
-    Unit.exbibyte,
-    Unit.zebibit,
-    Unit.zebibyte,
-    Unit.yobibit,
-    Unit.yobibyte,
-  ]);
-
   /// The number of bits this unit is equivalent to.
   final BigInt bits;
 
@@ -487,25 +436,6 @@ final class Unit<S extends UnitSymbols> {
   ///
   /// Use this constructor to create custom units.
   const Unit(this.bits, {required this.symbols});
-
-  /// Given a number of [bits] and a [numeralSystem], finds the largest unit
-  /// that accurately describes its magnitude.
-  factory Unit.matchToSize({
-    required BigInt bits,
-    required NumeralSystem numeralSystem,
-  }) {
-    final units = switch (numeralSystem) {
-      DecimalSystem() => Unit.decimal,
-      BinarySystem() => Unit.binary,
-    };
-    for (final unit in units.reversed) {
-      if (bits >= unit.bits) {
-        return unit;
-      }
-    }
-
-    return Unit.bit;
-  }
 
   /// Given a [quantity], calculates the number of bits equivalent for this
   /// unit.

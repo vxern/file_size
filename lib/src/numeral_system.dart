@@ -1,5 +1,10 @@
+import 'package:file_size/src/unit.dart';
+import 'package:file_size/src/unit_symbols.dart';
+
 /// Represents the numeral system of units.
 abstract class NumeralSystem {
+  List<Unit> get units;
+
   /// Returns an instance of [NumeralSystem].
   const NumeralSystem();
 }
@@ -15,6 +20,34 @@ abstract class NumeralSystem {
 ///
 /// Example units include Kilobits (Kb/Kbit) and Megabytes (MB/Mbyte).
 class DecimalSystem extends NumeralSystem {
+  /// A list of units in the decimal numeral system, arranged in order of
+  /// ascending size.
+  ///
+  /// Includes bits and bytes.
+  static final List<Unit> _units = List.unmodifiable([
+    Unit.bit,
+    Unit.byte,
+    Unit.kilobit,
+    Unit.kilobyte,
+    Unit.megabit,
+    Unit.megabyte,
+    Unit.gigabit,
+    Unit.gigabyte,
+    Unit.terabit,
+    Unit.terabyte,
+    Unit.petabit,
+    Unit.petabyte,
+    Unit.exabit,
+    Unit.exabyte,
+    Unit.zettabit,
+    Unit.zettabyte,
+    Unit.yottabit,
+    Unit.yottabyte,
+  ]);
+
+  @override
+  List<Unit> get units => _units;
+
   /// Returns an instance of [DecimalSystem].
   const DecimalSystem();
 }
@@ -30,6 +63,34 @@ class DecimalSystem extends NumeralSystem {
 ///
 /// Example units include Kibibits (Kib/Kibit) and Mebibytes (MiB/Mibyte).
 class BinarySystem extends NumeralSystem {
+  /// A list of units in the binary numeral system, arranged in order of
+  /// ascending size.
+  ///
+  /// Includes bits and bytes.
+  static final List<Unit> _units = List.unmodifiable([
+    Unit.bit,
+    Unit.byte,
+    Unit.kibibit,
+    Unit.kibibyte,
+    Unit.mebibit,
+    Unit.mebibyte,
+    Unit.gibibit,
+    Unit.gibibyte,
+    Unit.tebibit,
+    Unit.tebibyte,
+    Unit.pebibit,
+    Unit.pebibyte,
+    Unit.exbibit,
+    Unit.exbibyte,
+    Unit.zebibit,
+    Unit.zebibyte,
+    Unit.yobibit,
+    Unit.yobibyte,
+  ]);
+
+  @override
+  List<Unit> get units => _units;
+
   /// Returns an instance of [BinarySystem].
   const BinarySystem();
 }
