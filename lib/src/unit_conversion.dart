@@ -3,6 +3,9 @@ import 'package:file_size/src/unit.dart';
 /// Defines which unit the file size should be converted into before displaying.
 sealed class UnitConversion {
   const UnitConversion._();
+
+  /// Given a size in [bits], returns a [Unit] to represent it
+  Unit bitsToUnit({required BigInt bits});
 }
 
 /// The size is converted to the largest possible unit that most accurately
@@ -28,6 +31,10 @@ final class BestFitConversion extends UnitConversion {
   const BestFitConversion({
     this.numeralSystem = NumeralSystem.decimal,
   }) : super._();
+
+  @override
+  Unit bitsToUnit({required BigInt bits}) =>
+      Unit.matchToSize(bits: bits, numeralSystem: numeralSystem);
 }
 
 /// The size is converted to a specific unit, regardless of the magnitude of the
@@ -41,4 +48,7 @@ final class CustomUnitConversion extends UnitConversion {
 
   /// Returns an instance of [CustomUnitConversion].
   const CustomUnitConversion({required this.unit}) : super._();
+
+  @override
+  Unit bitsToUnit({required BigInt bits}) => unit;
 }

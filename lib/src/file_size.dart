@@ -81,8 +81,7 @@ String fileSizeToString(
 
   final inputBits = inputUnit.quantityToBits(quantity);
 
-  final outputUnit =
-      _getOutputUnit(inputBits: inputBits, unitConversion: unitConversion);
+  final outputUnit = unitConversion.bitsToUnit(bits: inputBits);
   final outputQuantity = outputUnit.bitsToQuantity(inputBits);
 
   final formattedUnit = _formatUnit(
@@ -97,16 +96,6 @@ String fileSizeToString(
 
   return '$formattedQuantity $formattedUnit';
 }
-
-Unit _getOutputUnit({
-  required BigInt inputBits,
-  required UnitConversion unitConversion,
-}) =>
-    switch (unitConversion) {
-      BestFitConversion(numeralSystem: final numeralSystem) =>
-        Unit.matchToSize(bits: inputBits, numeralSystem: numeralSystem),
-      CustomUnitConversion(unit: final unit) => unit,
-    };
 
 String _formatUnit({
   required Unit outputUnit,
