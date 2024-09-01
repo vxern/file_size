@@ -1,7 +1,7 @@
 import 'package:file_size/src/unit.dart';
 
 /// Defines which unit the file size should be converted into before displaying.
-sealed class UnitConversion {
+abstract class UnitConversion {
   const UnitConversion._();
 
   /// Given a size in [bits], returns a [Unit] to represent it
@@ -20,7 +20,7 @@ sealed class UnitConversion {
 /// 512 gibibytes large, the conversion will give the file size in gibibytes. On
 /// the other hand, given a file 1024 gibibytes large, the conversion will give
 /// the file size in tebibytes.
-final class BestFitConversion extends UnitConversion {
+class BestFitConversion extends UnitConversion {
   /// The numeral system of the candidate units for conversion.
   final NumeralSystem numeralSystem;
 
@@ -42,7 +42,7 @@ final class BestFitConversion extends UnitConversion {
 ///
 /// For example, using [Unit.byte], given a file 3 MB large, the file size will
 /// be given as 3,000,000 bytes.
-final class CustomUnitConversion extends UnitConversion {
+class CustomUnitConversion extends UnitConversion {
   /// The unit to convert the size to.
   final Unit unit;
 
