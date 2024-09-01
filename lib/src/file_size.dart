@@ -93,19 +93,3 @@ String fileSizeToString(
 
   return '$formattedQuantity $formattedUnit';
 }
-
-String _formatQuantity({
-  required Unit outputUnit,
-  required num outputQuantity,
-  required QuantityDisplayMode quantityDisplayMode,
-}) =>
-    switch (quantityDisplayMode) {
-      FixedPrecisionDisplayMode(precision: final precision) =>
-        outputQuantity.toStringAsFixed(precision),
-      PrecisionDisplayMode(precision: final precision) =>
-        outputQuantity.toStringAsPrecision(precision),
-      TruncateDisplayMode() => outputQuantity.truncate().toString(),
-      RoundDisplayMode() => outputQuantity.round().toString(),
-      CustomQuantityDisplayMode(converter: final converter) =>
-        converter(outputQuantity, unit: outputUnit),
-    };

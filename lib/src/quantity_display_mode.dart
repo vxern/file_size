@@ -4,6 +4,9 @@ import 'package:file_size/src/unit.dart';
 /// the amount of a given unit.
 sealed class QuantityDisplayMode {
   const QuantityDisplayMode();
+
+  /// Given a [quantity] and a [unit], formats it as a human-readable string.
+  String format(num quantity, {required Unit unit});
 }
 
 /// The quantity is displayed with a fixed precision.
@@ -18,6 +21,10 @@ final class FixedPrecisionDisplayMode extends QuantityDisplayMode {
 
   /// Returns an instance of [FixedPrecisionDisplayMode].
   const FixedPrecisionDisplayMode({this.precision = 1});
+
+  @override
+  String format(num quantity, {required Unit unit}) =>
+      quantity.toStringAsFixed(precision);
 }
 
 /// The quantity is displayed with a set precision.
@@ -33,6 +40,10 @@ final class PrecisionDisplayMode extends QuantityDisplayMode {
 
   /// Returns an instance of [PrecisionDisplayMode].
   const PrecisionDisplayMode({this.precision = 1});
+
+  @override
+  String format(num quantity, {required Unit unit}) =>
+      quantity.toStringAsPrecision(precision);
 }
 
 /// The quantity is truncated before being displayed, effectively disregarding
@@ -42,6 +53,10 @@ final class PrecisionDisplayMode extends QuantityDisplayMode {
 final class TruncateDisplayMode extends QuantityDisplayMode {
   /// Returns an instance of [TruncateDisplayMode].
   const TruncateDisplayMode();
+
+  @override
+  String format(num quantity, {required Unit unit}) =>
+      quantity.truncate().toString();
 }
 
 /// The quantity is rounded before being displayed.
@@ -51,6 +66,10 @@ final class TruncateDisplayMode extends QuantityDisplayMode {
 final class RoundDisplayMode extends QuantityDisplayMode {
   /// Returns an instance of [RoundDisplayMode].
   const RoundDisplayMode();
+
+  @override
+  String format(num quantity, {required Unit unit}) =>
+      quantity.round().toString();
 }
 
 /// A function used to format a [quantity] based on its [unit].
@@ -63,4 +82,8 @@ final class CustomQuantityDisplayMode extends QuantityDisplayMode {
 
   /// Returns an instance of [CustomQuantityDisplayMode].
   const CustomQuantityDisplayMode({required this.converter});
+
+  @override
+  String format(num quantity, {required Unit unit}) =>
+      converter(quantity, unit: unit);
 }
