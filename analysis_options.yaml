@@ -1,1 +1,5 @@
 include: package:words/core.yaml
+
+linter:
+  rules:
+    parameter_assignments: false

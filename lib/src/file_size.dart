@@ -54,14 +54,14 @@ import 'package:file_size/src/unit_style.dart';
 ///
 /// To specify the mode in which the quantity will be displayed in, provide a
 /// value for [quantityDisplayMode]. By default, the quantity will be displayed
-/// with a precision of up to 1 decimal place. For more information on quantity
-/// display modes, read the documentation for [QuantityDisplayMode].
+/// using [SimpleDisplayMode]. For more information on quantity display modes,
+/// read the documentation for [QuantityDisplayMode].
 String fileSizeToString(
   num quantity, {
   Unit? inputUnit,
   UnitConversion unitConversion = const BestFitConversion(),
   UnitStyle unitStyle = const ShortUppercaseStyle(),
-  QuantityDisplayMode quantityDisplayMode = const PrecisionDisplayMode(),
+  QuantityDisplayMode quantityDisplayMode = const SimpleDisplayMode(),
 }) {
   inputUnit ??= Unit.byte;
 

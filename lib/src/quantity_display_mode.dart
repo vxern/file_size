@@ -10,6 +10,41 @@ abstract class QuantityDisplayMode {
   String format(num quantity, {required Unit unit});
 }
 
+/// The quantity is displayed using the standard call to [num.toString].
+class SimpleDisplayMode extends QuantityDisplayMode {
+  /// Specifies whether to round the quantity before formatting.
+  ///
+  /// If used in conjunction with [truncate], the value will be first rounded,
+  /// then truncated.
+  final bool round;
+
+  /// Specifies whether to truncate the quantity before formatting.
+  ///
+  /// If used in conjunction with [round], the value will be first rounded, then
+  /// truncated.
+  final bool truncate;
+
+  /// Returns an instance of [SimpleDisplayMode].
+  const SimpleDisplayMode({this.round = false, this.truncate = false});
+
+  @override
+  String format(num quantity, {required Unit unit}) {
+    if (round) {
+      quantity = quantity.round();
+    }
+
+    if (truncate) {
+      quantity = quantity.truncate();
+    }
+
+    if (quantity == 0) {
+      return quantity.toStringAsFixed(0);
+    }
+
+    return quantity.toString();
+  }
+}
+
 /// The quantity is displayed with a fixed precision.
 ///
 /// For example, with a [precision] of 3, a quantity 10.93214 will be displayed
@@ -45,32 +80,6 @@ class PrecisionDisplayMode extends QuantityDisplayMode {
   @override
   String format(num quantity, {required Unit unit}) =>
       quantity.toStringAsPrecision(precision);
-}
-
-/// The quantity is truncated before being displayed, effectively disregarding
-/// its fractional part.
-///
-/// For example, a quantity 10.932 will be displayed as '10'.
-class TruncateDisplayMode extends QuantityDisplayMode {
-  /// Returns an instance of [TruncateDisplayMode].
-  const TruncateDisplayMode();
-
-  @override
-  String format(num quantity, {required Unit unit}) =>
-      quantity.truncate().toString();
-}
-
-/// The quantity is rounded before being displayed.
-///
-/// For example, a quantity 10.932 will be displayed as '11', meanwhile 10.032
-/// will be displayed as '10'.
-final class RoundDisplayMode extends QuantityDisplayMode {
-  /// Returns an instance of [RoundDisplayMode].
-  const RoundDisplayMode();
-
-  @override
-  String format(num quantity, {required Unit unit}) =>
-      quantity.round().toString();
 }
 
 /// A function used to format a [quantity] based on its [unit].
