@@ -495,8 +495,8 @@ final class Unit<S extends UnitSymbols> {
     required NumeralSystem numeralSystem,
   }) {
     final units = switch (numeralSystem) {
-      NumeralSystem.decimal => Unit.decimal,
-      NumeralSystem.binary => Unit.binary,
+      DecimalSystem() => Unit.decimal,
+      BinarySystem() => Unit.binary,
     };
     for (final unit in units.reversed) {
       if (bits >= unit.bits) {

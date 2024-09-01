@@ -36,7 +36,7 @@ import 'package:file_size/src/unit_style.dart';
 /// // We might want to use binary units instead:
 /// fileSizeToString(
 ///   1024,
-///   unitConversion: BestFitConversion(numeralSystem: NumeralSystem.binary),
+///   unitConversion: const BestFitConversion(numeralSystem: BinarySystem()),
 /// ); // 1 KiB
 /// ```
 ///

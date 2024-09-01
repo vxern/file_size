@@ -1,3 +1,4 @@
+import 'package:file_size/file_size.dart';
 import 'package:file_size/src/numeral_system.dart';
 import 'package:file_size/src/unit.dart';
 
@@ -30,7 +31,7 @@ class BestFitConversion extends UnitConversion {
   /// By default, [BestFitConversion] uses the decimal numeral system, returning
   /// units KB, MB, GB, etc.
   const BestFitConversion({
-    this.numeralSystem = NumeralSystem.decimal,
+    this.numeralSystem = const DecimalSystem(),
   }) : super._();
 
   @override
