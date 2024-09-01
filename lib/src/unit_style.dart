@@ -1,43 +1,68 @@
 import 'package:file_size/src/unit.dart';
+import 'package:file_size/src/unit_symbols.dart';
 
-/// Represents the display style of the unit.
-enum UnitStyle {
-  /// The unit will be displayed concisely with the prefix in lowercase.
-  ///
-  /// For example, a kilobit will be shown as `kb` and a kilobyte will be shown
-  /// as `kB`.
-  ///
-  /// Note: Bits will be shown as `b` and bytes will be shown as `B` indifferent
-  /// of whether [shortLowercase] or [shortUppercase] is used.
-  shortLowercase,
+/// Represents the display style of a unit.
+abstract class UnitStyle<S extends UnitSymbols> {
+  /// Returns an instance of [UnitStyle].
+  const UnitStyle();
 
-  /// The unit will be displayed concisely with the prefix in uppercase.
-  ///
-  /// For example, a kilobit will be shown as `Kb` and a kilobyte will be shown
-  /// as `KB`.
-  ///
-  /// Note: Bits will be shown as `b` and bytes will be shown as `B` indifferent
-  /// of whether [shortLowercase] or [shortUppercase] is used.
-  shortUppercase,
+  /// Given a [unit], formats it as a human-readable string in this style.
+  String format(Unit unit);
+}
 
-  /// The unit will be displayed in its long form with the prefix in lowercase.
-  ///
-  /// For example, a kilobit will be shown as `kbit` and a kilobyte will be
-  /// shown as `kbyte`.
-  longLowercase,
+/// The unit will be displayed concisely with the prefix in lowercase.
+///
+/// For example, a kilobit will be shown as `kb` and a kilobyte will be shown
+/// as `kB`.
+///
+/// Note: Bits will be shown as `b` and bytes will be shown as `B` indifferent
+/// of whether [ShortLowercaseStyle] or [ShortUppercaseStyle] are used.
+class ShortLowercaseStyle extends UnitStyle<UnitSymbols> {
+  /// Returns an instance of [ShortLowercaseStyle].
+  const ShortLowercaseStyle();
 
-  /// The unit will be displayed in its long form with the prefix in lowercase.
-  ///
-  /// For example, a kilobit will be shown as `Kbit` and a kilobyte will be
-  /// shown as `Kbyte`.
-  longUppercase;
+  @override
+  String format(Unit<UnitSymbols> unit) => unit.symbols.shortLowercase;
+}
 
-  /// Given a [unit], formats it as a human-readable string using the current
-  /// style.
-  String format(Unit unit) => switch (this) {
-        UnitStyle.shortLowercase => unit.symbols.shortLowercase,
-        UnitStyle.shortUppercase => unit.symbols.shortUppercase,
-        UnitStyle.longLowercase => unit.symbols.longLowercase,
-        UnitStyle.longUppercase => unit.symbols.longUppercase,
-      };
+/// The unit will be displayed concisely with the prefix in uppercase.
+///
+/// For example, a kilobit will be shown as `Kb` and a kilobyte will be shown
+/// as `KB`.
+///
+/// Note: Bits will be shown as `b` and bytes will be shown as `B` indifferent
+/// of whether [ShortLowercaseStyle] or [ShortUppercaseStyle] are used.
+class ShortUppercaseStyle extends UnitStyle<UnitSymbols> {
+  /// Returns an instance of [ShortUppercaseStyle].
+  const ShortUppercaseStyle();
+
+  @override
+  String format(Unit<UnitSymbols> unit) =>
+      unit.symbols.shortUppercase ?? unit.symbols.shortLowercase;
+}
+
+/// The unit will be displayed in its long form with the prefix in lowercase.
+///
+/// For example, a kilobit will be shown as `kbit` and a kilobyte will be
+/// shown as `kbyte`.
+class LongLowercaseStyle extends UnitStyle<UnitSymbols> {
+  /// Returns an instance of [LongLowercaseStyle].
+  const LongLowercaseStyle();
+
+  @override
+  String format(Unit<UnitSymbols> unit) =>
+      unit.symbols.longLowercase ?? unit.symbols.shortLowercase;
+}
+
+/// The unit will be displayed in its long form with the prefix in lowercase.
+///
+/// For example, a kilobit will be shown as `Kbit` and a kilobyte will be
+/// shown as `Kbyte`.
+class LongUppercaseStyle extends UnitStyle<UnitSymbols> {
+  /// Returns an instance of [LongUppercaseStyle].
+  const LongUppercaseStyle();
+
+  @override
+  String format(Unit<UnitSymbols> unit) =>
+      unit.symbols.longUppercase ?? unit.symbols.shortLowercase;
 }

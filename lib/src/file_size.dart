@@ -46,10 +46,10 @@ import 'package:file_size/src/unit_style.dart';
 /// the documentation for [UnitStyle].
 ///
 /// ```dart
-/// fileSizeToString(1000, unitStyle: UnitStyle.shortLowercase); // 1 kb
-/// fileSizeToString(1000, unitStyle: UnitStyle.shortUppercase); // 1 Kb
-/// fileSizeToString(1000, unitStyle: UnitStyle.longLowercase); // 1 kbit
-/// fileSizeToString(1000, unitStyle: UnitStyle.longUppercase); // 1 Kbit
+/// fileSizeToString(1000); // 1 kb
+/// fileSizeToString(1000, unitStyle: const ShortUppercaseStyle()); // 1 Kb
+/// fileSizeToString(1000, unitStyle: const LongLowercaseStyle()); // 1 kbit
+/// fileSizeToString(1000, unitStyle: const LongUppercaseStyle()); // 1 Kbit
 /// ```
 ///
 /// To specify the mode in which the quantity will be displayed in, provide a
@@ -60,7 +60,7 @@ String fileSizeToString(
   num quantity, {
   Unit? inputUnit,
   UnitConversion unitConversion = const BestFitConversion(),
-  UnitStyle unitStyle = UnitStyle.shortUppercase,
+  UnitStyle unitStyle = const ShortUppercaseStyle(),
   QuantityDisplayMode quantityDisplayMode = const PrecisionDisplayMode(),
 }) {
   inputUnit ??= Unit.byte;

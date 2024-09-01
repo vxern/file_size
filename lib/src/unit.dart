@@ -54,7 +54,7 @@ import 'package:file_size/src/unit_symbols.dart';
 ///   - [zebibyte]
 ///   - [yobibit]
 ///   - [yobibyte]
-final class Unit {
+final class Unit<S extends UnitSymbols> {
   /// 1 bit
   static final bit = Unit(
     BigInt.from(1),
