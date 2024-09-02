@@ -18,7 +18,7 @@ import 'package:file_size/src/unit_style.dart';
 /// fileSizeToString(300, inputUnit: Unit.bit); // 37.5 B
 ///
 /// // Sometimes, we might know our sizes in... terabytes.
-/// fileSizeToString(6, inputUnit: Unit.terabyte); // 6 TBs
+/// fileSizeToString(6, inputUnit: Unit.terabyte); // 6 TB
 /// ```
 ///
 /// To specify how the input size is converted into a final unit, provide a
@@ -46,9 +46,13 @@ import 'package:file_size/src/unit_style.dart';
 /// the documentation for [UnitStyle].
 ///
 /// ```dart
-/// fileSizeToString(1000); // 1 kb
+/// fileSizeToString(1000, unitStyle: const ShortLowercaseStyle()); // 1 kb
+///
+/// // This is the default.
 /// fileSizeToString(1000, unitStyle: const ShortUppercaseStyle()); // 1 Kb
+///
 /// fileSizeToString(1000, unitStyle: const LongLowercaseStyle()); // 1 kbit
+///
 /// fileSizeToString(1000, unitStyle: const LongUppercaseStyle()); // 1 Kbit
 /// ```
 ///
@@ -56,6 +60,31 @@ import 'package:file_size/src/unit_style.dart';
 /// value for [quantityDisplayMode]. By default, the quantity will be displayed
 /// using [SimpleDisplayMode]. For more information on quantity display modes,
 /// read the documentation for [QuantityDisplayMode].
+///
+/// ```dart
+/// fileSizeToString(1000); // 1 kb
+///
+/// fileSizeToString(1500); // 1.5 kb
+///
+/// fileSizeToString(
+///   1500,
+///   quantityDisplayMode: const SimpleDisplayMode(round: true),
+/// ); // 2 kb
+///
+/// fileSizeToString(
+///   1500,
+///   quantityDisplayMode: const SimpleDisplayMode(truncate: true),
+/// ); // 1 kb
+///
+/// fileSizeToString(
+///   1000,
+///   quantityDisplayMode: CustomQuantityDisplayMode(
+///     converter: (quantity, {required unit}) {
+///       // Convert your quantity into a human-readable string here.
+///     },
+///   ),
+/// );
+/// ```
 String fileSizeToString(
   num quantity, {
   Unit? inputUnit,

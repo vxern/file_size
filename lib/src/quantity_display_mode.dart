@@ -13,15 +13,11 @@ abstract class QuantityDisplayMode {
 /// The quantity is displayed using the standard call to [num.toString].
 class SimpleDisplayMode extends QuantityDisplayMode {
   /// Specifies whether to round the quantity before formatting.
-  ///
-  /// If used in conjunction with [truncate], the value will be first rounded,
-  /// then truncated.
   final bool round;
 
   /// Specifies whether to truncate the quantity before formatting.
   ///
-  /// If used in conjunction with [round], the value will be first rounded, then
-  /// truncated.
+  /// If [round] is enabled, this will have no effect.
   final bool truncate;
 
   /// Returns an instance of [SimpleDisplayMode].
