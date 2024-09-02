@@ -65,21 +65,6 @@ String fileSizeToString(
 }) {
   inputUnit ??= Unit.byte;
 
-  if (quantityDisplayMode
-      case FixedPrecisionDisplayMode(precision: final precision)) {
-    assert(
-      0 <= precision && precision <= 20,
-      'Precision must be between 0 (inclusive) and 20 (inclusive).',
-    );
-  }
-  if (quantityDisplayMode
-      case PrecisionDisplayMode(precision: final precision)) {
-    assert(
-      1 <= precision && precision <= 21,
-      'Precision must be between 1 (inclusive) and 21 (inclusive).',
-    );
-  }
-
   final inputBits = inputUnit.quantityToBits(quantity);
 
   final outputUnit = unitConversion.bitsToUnit(bits: inputBits);
