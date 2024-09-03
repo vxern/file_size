@@ -39,4 +39,14 @@ void main() {
       expect(fileSizeToString(double.nan), equals('NaN b'));
     });
   });
+
+  group('input unit', () {
+    test('takes the input unit to be [Unit.byte] by default.', () {
+      expect(fileSizeToString(100), equals('100 B'));
+    });
+
+    test('takes the input unit into account.', () {
+      expect(fileSizeToString(100, inputUnit: Unit.bit), equals('12.5 B'));
+    });
+  });
 }
