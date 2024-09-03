@@ -108,7 +108,8 @@ String fileSizeToString(
 
   final inputBits = inputUnit.quantityToBits(quantity);
 
-  final outputUnit = unitConversion.bitsToUnit(bits: inputBits);
+  final outputUnit =
+      unitConversion.bitsToUnit(bits: inputBits.round().toBigInt());
   final outputQuantity = outputUnit.bitsToQuantity(inputBits);
 
   final formattedUnit = unitStyle.format(outputUnit);

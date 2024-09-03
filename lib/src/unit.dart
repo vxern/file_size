@@ -441,12 +441,11 @@ final class Unit {
 
   /// Given a [quantity], calculates the number of bits equivalent for this
   /// unit.
-  BigInt quantityToBits(num quantity) =>
-      (Decimal.parse(quantity.toString()) * Decimal.fromBigInt(bits))
-          .floor()
-          .toBigInt();
+  Decimal quantityToBits(num quantity) =>
+      Decimal.parse(quantity.toString()) * Decimal.fromBigInt(bits);
 
   /// Given a number of [bits], calculates the equivalent in quantity of this
   /// unit.
-  num bitsToQuantity(BigInt bits) => bits / this.bits;
+  Decimal bitsToQuantity(Decimal bits) =>
+      (bits / Decimal.fromBigInt(this.bits)).toDecimal();
 }

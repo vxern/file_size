@@ -1,3 +1,4 @@
+import 'package:decimal/decimal.dart';
 import 'package:file_size/src/unit.dart';
 
 /// Defines how the final quantity should be displayed, where the quantity is
@@ -7,7 +8,7 @@ abstract class QuantityDisplayMode {
   const QuantityDisplayMode();
 
   /// Given a [quantity] and a [unit], formats it as a human-readable string.
-  String format(num quantity, {required Unit unit});
+  String format(Decimal quantity, {required Unit unit});
 }
 
 /// The quantity is displayed using the standard call to [num.toString].
@@ -24,7 +25,7 @@ class SimpleDisplayMode extends QuantityDisplayMode {
   const SimpleDisplayMode({this.round = false, this.truncate = false});
 
   @override
-  String format(num quantity, {required Unit unit}) {
+  String format(Decimal quantity, {required Unit unit}) {
     if (round) {
       quantity = quantity.round();
     }
@@ -34,7 +35,7 @@ class SimpleDisplayMode extends QuantityDisplayMode {
     }
 
     // If the quantity has no decimal part, display it like an integer.
-    if (quantity == quantity.toInt()) {
+    if (quantity.isInteger) {
       return quantity.toStringAsFixed(0);
     }
 
@@ -43,7 +44,10 @@ class SimpleDisplayMode extends QuantityDisplayMode {
 }
 
 /// A function used to format a [quantity] based on its [unit].
-typedef QuantityFormatter = String Function(num quantity, {required Unit unit});
+typedef QuantityFormatter = String Function(
+  Decimal quantity, {
+  required Unit unit,
+});
 
 /// The quantity passes through a custom converter to get its display format.
 class CustomQuantityDisplayMode extends QuantityDisplayMode {
@@ -54,6 +58,6 @@ class CustomQuantityDisplayMode extends QuantityDisplayMode {
   const CustomQuantityDisplayMode({required this.converter});
 
   @override
-  String format(num quantity, {required Unit unit}) =>
+  String format(Decimal quantity, {required Unit unit}) =>
       converter(quantity, unit: unit);
 }
