@@ -46,14 +46,14 @@ import 'package:file_size/src/unit_style.dart';
 /// the documentation for [UnitStyle].
 ///
 /// ```dart
-/// fileSizeToString(1000, unitStyle: const ShortLowercaseStyle()); // 1 kb
+/// fileSizeToString(1000, unitStyle: const ShortLowercaseStyle()); // 1 kB
 ///
 /// // This is the default.
-/// fileSizeToString(1000, unitStyle: const ShortUppercaseStyle()); // 1 Kb
+/// fileSizeToString(1000, unitStyle: const ShortUppercaseStyle()); // 1 KB
 ///
-/// fileSizeToString(1000, unitStyle: const LongLowercaseStyle()); // 1 kbit
+/// fileSizeToString(1000, unitStyle: const LongLowercaseStyle()); // 1 kbyte
 ///
-/// fileSizeToString(1000, unitStyle: const LongUppercaseStyle()); // 1 Kbit
+/// fileSizeToString(1000, unitStyle: const LongUppercaseStyle()); // 1 Kbyte
 /// ```
 ///
 /// To specify the mode in which the quantity will be displayed in, provide a
@@ -62,19 +62,19 @@ import 'package:file_size/src/unit_style.dart';
 /// read the documentation for [QuantityDisplayMode].
 ///
 /// ```dart
-/// fileSizeToString(1000); // 1 kb
+/// fileSizeToString(1000); // 1 KB
 ///
-/// fileSizeToString(1500); // 1.5 kb
+/// fileSizeToString(1500); // 1.5 KB
 ///
 /// fileSizeToString(
 ///   1500,
 ///   quantityDisplayMode: const SimpleDisplayMode(round: true),
-/// ); // 2 kb
+/// ); // 2 KB
 ///
 /// fileSizeToString(
 ///   1500,
 ///   quantityDisplayMode: const SimpleDisplayMode(truncate: true),
-/// ); // 1 kb
+/// ); // 1 KB
 ///
 /// fileSizeToString(
 ///   1000,
