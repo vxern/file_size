@@ -436,7 +436,7 @@ final class Unit {
   ///
   /// Use this constructor to create custom units.
   ///
-  /// [bits] must not be zero.
+  /// [bits] must be positive and must not be zero.
   const Unit(this.bits, {required this.symbols});
 
   /// Given a [quantity], calculates the number of bits equivalent for this
