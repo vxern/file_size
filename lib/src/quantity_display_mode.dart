@@ -33,7 +33,8 @@ class SimpleDisplayMode extends QuantityDisplayMode {
       quantity = quantity.truncate();
     }
 
-    if (quantity == 0) {
+    // If the quantity has no decimal part, display it like an integer.
+    if (quantity == quantity.toInt()) {
       return quantity.toStringAsFixed(0);
     }
 
