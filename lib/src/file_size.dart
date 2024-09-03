@@ -94,6 +94,18 @@ String fileSizeToString(
 }) {
   inputUnit ??= Unit.byte;
 
+  if (quantity.isInfinite) {
+    if (quantity.isNegative) {
+      return '-∞ b';
+    }
+
+    return '∞ b';
+  }
+
+  if (quantity.isNaN) {
+    return 'NaN b';
+  }
+
   final inputBits = inputUnit.quantityToBits(quantity);
 
   final outputUnit = unitConversion.bitsToUnit(bits: inputBits);
