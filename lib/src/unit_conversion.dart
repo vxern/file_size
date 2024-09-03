@@ -10,7 +10,8 @@ abstract class UnitConversion {
 }
 
 /// The size is converted to the largest possible unit that most accurately
-/// describes its magnitude, subject to the [NumeralSystem] used.
+/// describes its magnitude, subject to the [NumeralSystem] used. The conversion
+/// works identically for negative values.
 ///
 /// For example, using this conversion with the [DecimalSystem], given a file
 /// 500 gigabytes large, the conversion will give the file size in gigabytes. On
@@ -36,7 +37,7 @@ class BestFitConversion extends UnitConversion {
   @override
   Unit bitsToUnit({required BigInt bits}) {
     for (final unit in numeralSystem.units.reversed) {
-      if (bits >= unit.bits) {
+      if (bits.abs() >= unit.bits) {
         return unit;
       }
     }
