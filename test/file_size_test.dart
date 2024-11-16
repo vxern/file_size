@@ -48,6 +48,10 @@ void main() {
     test('takes [inputUnit] into account.', () {
       expect(fileSizeToString(100, inputUnit: Unit.bit), equals('12.5 B'));
     });
+
+    test('rounds fractional quantities when [inputUnit] is indivisible.', () {
+      expect(fileSizeToString(1.2, inputUnit: Unit.bit), equals('1 b'));
+    });
   });
 
   group('unit conversion', () {
