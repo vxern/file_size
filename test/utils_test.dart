@@ -19,13 +19,17 @@ void main() {
     test(
       'returns a list containing a single pair of elements when given a list '
       'with 3 elements.',
-      () => expect(getTriplets([1, 2, 3]), equals([(1, 2, 3)])),
+      () {
+        expect(getTriplets([1, 2, 3]), equals([(1, 2, 3)]));
+      },
     );
 
     test(
       'returns a list containing multiple, overlapping pairs of elements when '
       'given a list with more than 3 elements.',
-      () => expect(getTriplets([1, 2, 3, 4]), equals([(1, 2, 3), (2, 3, 4)])),
+      () {
+        expect(getTriplets([1, 2, 3, 4]), equals([(1, 2, 3), (2, 3, 4)]));
+      },
     );
   });
 }
