@@ -78,4 +78,25 @@ void main() {
       );
     });
   });
+
+  group('quantity display mode', () {
+    test(
+      'takes [quantityDisplayMode] to be [SimpleDisplayMode] by default.',
+      () {
+        expect(fileSizeToString(1.23), equals('1.23 B'));
+      },
+    );
+
+    test('takes [quantityDisplayMode] into account.', () {
+      expect(
+        fileSizeToString(
+          1000,
+          quantityDisplayMode: CustomQuantityDisplayMode(
+            converter: (quantity, {required unit}) => '<insert quantity here>',
+          ),
+        ),
+        equals('<insert quantity here> KB'),
+      );
+    });
+  });
 }
