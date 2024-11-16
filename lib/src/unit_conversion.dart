@@ -51,12 +51,12 @@ class BestFitConversion extends UnitConversion {
 ///
 /// For example, using [Unit.byte], given a file 3 MB large, the file size will
 /// be given as 3,000,000 bytes.
-class CustomUnitConversion extends UnitConversion {
+class SpecificUnitConversion extends UnitConversion {
   /// The unit to convert the size to.
   final Unit unit;
 
-  /// Returns an instance of [CustomUnitConversion].
-  const CustomUnitConversion({required this.unit}) : super._();
+  /// Returns an instance of [SpecificUnitConversion].
+  const SpecificUnitConversion({required this.unit}) : super._();
 
   @override
   Unit bitsToUnit({required BigInt bits}) => unit;
