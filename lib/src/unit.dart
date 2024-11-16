@@ -442,7 +442,7 @@ final class Unit {
   /// [bits] must be positive and must not be zero.
   const Unit(this.bits, {required this.symbols});
 
-  /// Given a [quantity], calculates the number of bits equivalent for this
+  /// Given a [quantity], calculates the equivalent number of bits using this
   /// unit.
   Decimal quantityToBits(num quantity) =>
       Decimal.parse(quantity.toString()) * Decimal.fromBigInt(bits);
