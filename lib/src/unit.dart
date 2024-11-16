@@ -448,4 +448,7 @@ final class Unit {
   /// unit.
   Decimal bitsToQuantity(Decimal bits) =>
       (bits / Decimal.fromBigInt(this.bits)).toDecimal();
+
+  @override
+  String toString() => "Unit '${symbols.shortLowercase}'";
 }
