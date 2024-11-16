@@ -1,6 +1,5 @@
 import 'package:decimal/decimal.dart';
 import 'package:file_size/file_size.dart';
-import 'package:file_size/src/quantity_display_mode.dart';
 import 'package:test/test.dart';
 
 import 'utils.dart';
@@ -121,6 +120,59 @@ void main() {
       expect(
         fileSizeToString(bytes, unitConversion: unitConversion),
         equals('8000 KB'),
+      );
+    });
+  });
+
+  group('unit style (ShortLowercaseStyle)', () {
+    test('displays the unit in short lowercase style.', () {
+      expect(
+        fileSizeToString(
+          1,
+          inputUnit: Unit.gigabit,
+          unitStyle: const ShortLowercaseStyle(),
+        ),
+        equals('1 gb'),
+      );
+    });
+  });
+
+  group('unit style (ShortUppercaseStyle)', () {
+    test('displays the unit in short uppercase style.', () {
+      expect(
+        fileSizeToString(
+          1,
+          inputUnit: Unit.gigabit,
+          // ignore: avoid_redundant_argument_values
+          unitStyle: const ShortUppercaseStyle(),
+        ),
+        equals('1 Gb'),
+      );
+    });
+  });
+
+  group('unit style (LongLowercaseStyle)', () {
+    test('displays the unit in long lowercase style.', () {
+      expect(
+        fileSizeToString(
+          1,
+          inputUnit: Unit.gigabit,
+          unitStyle: const LongLowercaseStyle(),
+        ),
+        equals('1 gbit'),
+      );
+    });
+  });
+
+  group('unit style (LongUppercaseStyle)', () {
+    test('displays the unit in long uppercase style.', () {
+      expect(
+        fileSizeToString(
+          1,
+          inputUnit: Unit.gigabit,
+          unitStyle: const LongUppercaseStyle(),
+        ),
+        equals('1 Gbit'),
       );
     });
   });
