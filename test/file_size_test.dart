@@ -66,50 +66,15 @@ void main() {
     });
   });
 
-  group('unit style (ShortLowercaseStyle)', () {
-    test('displays the unit in short lowercase style.', () {
-      expect(
-        fileSizeToString(
-          1,
-          inputUnit: Unit.gigabit,
-          unitStyle: const ShortLowercaseStyle(),
-        ),
-        equals('1 gb'),
-      );
+  group('unit style', () {
+    test('takes [unitStyle] to be [ShortUppercaseStyle] by default.', () {
+      expect(fileSizeToString(1), equals('1 B'));
     });
-  });
 
-  group('unit style (ShortUppercaseStyle)', () {
-    test('displays the unit in short uppercase style.', () {
+    test('takes [unitStyle] into account.', () {
       expect(
-        fileSizeToString(1, inputUnit: Unit.gigabit),
-        equals('1 Gb'),
-      );
-    });
-  });
-
-  group('unit style (LongLowercaseStyle)', () {
-    test('displays the unit in long lowercase style.', () {
-      expect(
-        fileSizeToString(
-          1,
-          inputUnit: Unit.gigabit,
-          unitStyle: const LongLowercaseStyle(),
-        ),
-        equals('1 gbit'),
-      );
-    });
-  });
-
-  group('unit style (LongUppercaseStyle)', () {
-    test('displays the unit in long uppercase style.', () {
-      expect(
-        fileSizeToString(
-          1,
-          inputUnit: Unit.gigabit,
-          unitStyle: const LongUppercaseStyle(),
-        ),
-        equals('1 Gbit'),
+        fileSizeToString(1, unitStyle: const ShortLowercaseStyle()),
+        equals('1 b'),
       );
     });
   });
