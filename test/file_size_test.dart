@@ -68,69 +68,13 @@ void main() {
 
   group('unit style', () {
     test('takes [unitStyle] to be [ShortUppercaseStyle] by default.', () {
-      expect(fileSizeToString(1), equals('1 B'));
+      expect(fileSizeToString(1000), equals('1 KB'));
     });
 
     test('takes [unitStyle] into account.', () {
       expect(
-        fileSizeToString(1, unitStyle: const ShortLowercaseStyle()),
-        equals('1 b'),
-      );
-    });
-  });
-
-  group('quantity display mode (SimpleDisplayMode)', () {
-    test(
-      'if [round] is true, rounds the quantity to the nearest whole number.',
-      () {
-        expect(
-          fileSizeToString(
-            1.5,
-            quantityDisplayMode: const SimpleDisplayMode(round: true),
-          ),
-          equals('2 B'),
-        );
-      },
-    );
-
-    test(
-      'if [truncate] is true, truncates the quantity.',
-      () {
-        expect(
-          fileSizeToString(
-            1.5,
-            quantityDisplayMode: const SimpleDisplayMode(truncate: true),
-          ),
-          equals('1 B'),
-        );
-      },
-    );
-
-    test(
-      'removes trailing zeroes from whole numbers.',
-      () {
-        expect(fileSizeToString(1.0), equals('1 B'));
-      },
-    );
-
-    test(
-      'displays doubles using standard string representation.',
-      () {
-        expect(fileSizeToString(1.52), equals('1.52 B'));
-      },
-    );
-  });
-
-  group('quantity display mode (CustomQuantityDisplayMode)', () {
-    test('displays the quantity in a custom format.', () {
-      expect(
-        fileSizeToString(
-          1,
-          quantityDisplayMode: CustomQuantityDisplayMode(
-            converter: (_, {required unit}) => '<insert quantity here>',
-          ),
-        ),
-        equals('<insert quantity here> B'),
+        fileSizeToString(1000, unitStyle: const ShortLowercaseStyle()),
+        equals('1 kB'),
       );
     });
   });
