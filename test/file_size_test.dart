@@ -28,15 +28,15 @@ void main() {
     });
 
     test('handles positive infinity.', () {
-      expect(fileSizeToString(double.infinity), equals('∞ b'));
+      expect(fileSizeToString(double.infinity), equals('∞ B'));
     });
 
     test('handles positive infinity.', () {
-      expect(fileSizeToString(double.negativeInfinity), equals('-∞ b'));
+      expect(fileSizeToString(double.negativeInfinity), equals('-∞ B'));
     });
 
     test('handles NaN.', () {
-      expect(fileSizeToString(double.nan), equals('NaN b'));
+      expect(fileSizeToString(double.nan), equals('NaN B'));
     });
   });
 
@@ -47,6 +47,21 @@ void main() {
 
     test('takes [inputUnit] into account.', () {
       expect(fileSizeToString(100, inputUnit: Unit.bit), equals('12.5 B'));
+    });
+
+    test('maintains the [inputUnit] when dealing with non-finite values.', () {
+      expect(
+        fileSizeToString(double.infinity, inputUnit: Unit.kibibit),
+        equals('∞ Kib'),
+      );
+      expect(
+        fileSizeToString(double.negativeInfinity, inputUnit: Unit.kibibit),
+        equals('-∞ Kib'),
+      );
+      expect(
+        fileSizeToString(double.nan, inputUnit: Unit.kibibit),
+        equals('NaN Kib'),
+      );
     });
 
     test('rounds fractional quantities when [inputUnit] is indivisible.', () {

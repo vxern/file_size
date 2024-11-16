@@ -1,3 +1,5 @@
+import 'package:decimal/decimal.dart';
+import 'package:file_size/file_size.dart';
 import 'package:file_size/src/quantity_display_mode.dart';
 import 'package:file_size/src/unit.dart';
 import 'package:file_size/src/unit_conversion.dart';
@@ -94,31 +96,61 @@ String fileSizeToString(
   inputUnit ??= defaultUnit;
 
   // TODO(vxern): Remove these hard-coded values.
-  if (quantity.isInfinite) {
-    if (quantity.isNegative) {
-      return '-∞ b';
+  if (!quantity.isFinite) {
+    final String formattedQuantity;
+    if (quantity.isNaN) {
+      formattedQuantity = 'NaN';
+    } else if (quantity.isNegative) {
+      formattedQuantity = '-∞';
+    } else {
+      formattedQuantity = '∞';
     }
 
-    return '∞ b';
-  }
+    final formattedUnit = unitStyle.format(inputUnit);
 
-  if (quantity.isNaN) {
-    return 'NaN b';
+    return '$formattedQuantity $formattedUnit';
   }
 
   if (inputUnit.isIndivisible && quantity.truncate() != quantity) {
     quantity = quantity.round();
   }
 
+  final output = _processUnitInformation(
+    quantity,
+    inputUnit: inputUnit,
+    unitConversion: unitConversion,
+  );
+
+  return _formatFileSize(
+    output.quantity,
+    unit: output.unit,
+    unitStyle: unitStyle,
+    quantityDisplayMode: quantityDisplayMode,
+  );
+}
+
+({Decimal quantity, Unit unit}) _processUnitInformation(
+  num quantity, {
+  required Unit inputUnit,
+  required UnitConversion unitConversion,
+}) {
   final inputBits = inputUnit.quantityToBits(quantity);
 
   final outputUnit =
       unitConversion.bitsToUnit(bits: inputBits.round().toBigInt());
   final outputQuantity = outputUnit.bitsToQuantity(inputBits);
 
-  final formattedUnit = unitStyle.format(outputUnit);
-  final formattedQuantity =
-      quantityDisplayMode.format(outputQuantity, unit: outputUnit);
+  return (quantity: outputQuantity, unit: outputUnit);
+}
+
+String _formatFileSize(
+  Decimal quantity, {
+  required Unit unit,
+  required UnitStyle unitStyle,
+  required QuantityDisplayMode quantityDisplayMode,
+}) {
+  final formattedUnit = unitStyle.format(unit);
+  final formattedQuantity = quantityDisplayMode.format(quantity, unit: unit);
 
   return '$formattedQuantity $formattedUnit';
 }
