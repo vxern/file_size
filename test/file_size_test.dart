@@ -1,5 +1,6 @@
 import 'package:decimal/decimal.dart';
 import 'package:file_size/file_size.dart';
+import 'package:file_size/src/quantity_display_mode.dart';
 import 'package:test/test.dart';
 
 import 'utils.dart';
@@ -53,7 +54,46 @@ void main() {
     });
   });
 
-  group('unit conversion', () {
+  group('unit conversion (BestFitConversion)', () {
+    test(
+      'displays the size in the unit that most accurately describes its '
+      'magnitude.',
+      () {
+        for (final (previous, current, next)
+            in getTriplets(defaultUnitConversion.numeralSystem.units)) {
+          // Check that if we don't meet the size of the unit, the function
+          // falls back to the previous unit.
+          final previousFactor = current.bits / previous.bits;
+          final previousQuantity = 1 - (1 / previousFactor);
+          final unitQuantity =
+              Decimal.parse((previousQuantity * previousFactor).toString());
+          expect(
+            fileSizeToString(previousQuantity, inputUnit: current),
+            equals(
+              [
+                defaultQuantityDisplayMode.format(unitQuantity, unit: current),
+                defaultUnitStyle.format(previous),
+              ].join(' '),
+            ),
+          );
+
+          expect(
+            fileSizeToString(1, inputUnit: current),
+            equals('1 ${defaultUnitStyle.format(current)}'),
+          );
+
+          // Check that if we exceed the size of the unit, the function moves
+          // onto the next unit.
+          final nextFactor = next.bits / current.bits;
+          final nextQuantity = nextFactor;
+          expect(
+            fileSizeToString(nextQuantity, inputUnit: current),
+            equals('1 ${defaultUnitStyle.format(next)}'),
+          );
+        }
+      },
+    );
+
     test('takes [numeralSystem] into account.', () {
       expect(fileSizeToString(1024), equals('1.024 KB'));
       expect(
@@ -70,51 +110,6 @@ void main() {
     test('displays the size in bits if equal to zero.', () {
       expect(fileSizeToString(0), equals('0 b'));
     });
-  });
-
-  group('unit conversion (BestFitConversion)', () {
-    test(
-      'displays the size in the unit that most accurately describes its '
-      'magnitude.',
-      () {
-        const numeralSystem = DecimalSystem();
-        const unitStyle = ShortUppercaseStyle();
-        const quantityDisplayMode = SimpleDisplayMode();
-
-        for (final (previous, current, next)
-            in getTriplets(numeralSystem.units)) {
-          // Check that if we don't meet the size of the unit, the function
-          // falls back to the previous unit.
-          final previousFactor = current.bits / previous.bits;
-          final previousQuantity = 1 - (1 / previousFactor);
-          final unitQuantity =
-              Decimal.parse((previousQuantity * previousFactor).toString());
-          expect(
-            fileSizeToString(previousQuantity, inputUnit: current),
-            equals(
-              [
-                quantityDisplayMode.format(unitQuantity, unit: current),
-                unitStyle.format(previous),
-              ].join(' '),
-            ),
-          );
-
-          expect(
-            fileSizeToString(1, inputUnit: current),
-            equals('1 ${unitStyle.format(current)}'),
-          );
-
-          // Check that if we exceed the size of the unit, the function moves
-          // onto the next unit.
-          final nextFactor = next.bits / current.bits;
-          final nextQuantity = nextFactor;
-          expect(
-            fileSizeToString(nextQuantity, inputUnit: current),
-            equals('1 ${unitStyle.format(next)}'),
-          );
-        }
-      },
-    );
   });
 
   group('unit conversion (SpecificUnitConversion)', () {
