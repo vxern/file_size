@@ -1,6 +1,9 @@
 import 'package:file_size/src/numeral_system.dart';
 import 'package:file_size/src/unit.dart';
 
+/// The default unit conversion is [BestFitConversion] with the [DecimalSystem].
+const defaultUnitConversion = BestFitConversion(numeralSystem: DecimalSystem());
+
 /// Defines which unit the file size should be converted into before displaying.
 abstract class UnitConversion {
   const UnitConversion._();
@@ -30,9 +33,7 @@ class BestFitConversion extends UnitConversion {
   ///
   /// By default, [BestFitConversion] uses the decimal numeral system, returning
   /// units KB, MB, GB, etc.
-  const BestFitConversion({
-    this.numeralSystem = const DecimalSystem(),
-  }) : super._();
+  const BestFitConversion({required this.numeralSystem}) : super._();
 
   @override
   Unit bitsToUnit({required BigInt bits}) {

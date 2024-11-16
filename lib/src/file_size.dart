@@ -88,11 +88,11 @@ import 'package:file_size/src/unit_style.dart';
 String fileSizeToString(
   num quantity, {
   Unit? inputUnit,
-  UnitConversion unitConversion = const BestFitConversion(),
-  UnitStyle unitStyle = const ShortUppercaseStyle(),
-  QuantityDisplayMode quantityDisplayMode = const SimpleDisplayMode(),
+  UnitConversion unitConversion = defaultUnitConversion,
+  UnitStyle unitStyle = defaultUnitStyle,
+  QuantityDisplayMode quantityDisplayMode = defaultQuantityDisplayMode,
 }) {
-  inputUnit ??= Unit.byte;
+  inputUnit ??= defaultUnit;
 
   if (quantity.isInfinite) {
     if (quantity.isNegative) {

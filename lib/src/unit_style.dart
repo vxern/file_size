@@ -1,5 +1,8 @@
 import 'package:file_size/src/unit.dart';
 
+/// The default unit style is [ShortUppercaseStyle].
+const defaultUnitStyle = ShortUppercaseStyle();
+
 /// Represents the display style of a unit.
 abstract class UnitStyle {
   /// Returns an instance of [UnitStyle].

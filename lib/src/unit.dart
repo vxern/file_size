@@ -1,6 +1,9 @@
 import 'package:decimal/decimal.dart';
 import 'package:file_size/src/unit_symbols.dart';
 
+/// The default unit is [Unit.byte].
+final defaultUnit = Unit.byte;
+
 /// Represents a unit used for describing the size of digital information.
 ///
 /// The library defines a set of units that should cover all standard use cases,
