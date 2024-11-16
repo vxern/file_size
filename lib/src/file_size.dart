@@ -3,8 +3,7 @@ import 'package:file_size/src/unit.dart';
 import 'package:file_size/src/unit_conversion.dart';
 import 'package:file_size/src/unit_style.dart';
 
-/// Given a [quantity] and (optionally) an [inputUnit], formats the quantity as
-/// a human-readable string.
+/// Given a [quantity], formats the quantity as a human-readable string.
 ///
 /// To specify the unit the quantity is in, provide a value for [inputUnit]. By
 /// default, the quantity is taken to be in bytes. For more information on
@@ -94,6 +93,7 @@ String fileSizeToString(
 }) {
   inputUnit ??= defaultUnit;
 
+  // TODO(vxern): Remove these hard-coded values.
   if (quantity.isInfinite) {
     if (quantity.isNegative) {
       return '-∞ b';
@@ -104,6 +104,10 @@ String fileSizeToString(
 
   if (quantity.isNaN) {
     return 'NaN b';
+  }
+
+  if (inputUnit.isIndivisible && quantity.truncate() != quantity) {
+    quantity = quantity.round();
   }
 
   final inputBits = inputUnit.quantityToBits(quantity);

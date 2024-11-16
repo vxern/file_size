@@ -65,6 +65,7 @@ final class Unit {
       longLowercase: 'bit',
       longUppercase: 'Bit',
     ),
+    isIndivisible: true,
   );
 
   /// 8 bits
@@ -435,12 +436,16 @@ final class Unit {
   /// The symbols used to represent this unit.
   final UnitSymbols symbols;
 
+  /// If set to true, fractional quantities of this unit will be rounded to a
+  /// whole number.
+  final bool isIndivisible;
+
   /// Returns an instance of [Unit].
   ///
   /// Use this constructor to create custom units.
   ///
   /// [bits] must be positive and must not be zero.
-  const Unit(this.bits, {required this.symbols});
+  const Unit(this.bits, {required this.symbols, this.isIndivisible = false});
 
   /// Given a [quantity], calculates the equivalent number of bits using this
   /// unit.
