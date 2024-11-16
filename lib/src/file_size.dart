@@ -95,7 +95,6 @@ String fileSizeToString(
 }) {
   inputUnit ??= defaultUnit;
 
-  // TODO(vxern): Remove these hard-coded values.
   if (!quantity.isFinite) {
     final String formattedQuantity;
     if (quantity.isNaN) {
