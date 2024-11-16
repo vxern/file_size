@@ -6,11 +6,21 @@ void main() {
   group('getWindows()', () {
     test('produces overlapping lists of the given size.', () {
       expect(
-        getWindows([1, 2, 3], size: 2),
+        getWindows([1, 2, 3, 4], size: 2),
         equals(
           [
             [1, 2],
             [2, 3],
+            [3, 4],
+          ],
+        ),
+      );
+      expect(
+        getWindows([1, 2, 3, 4], size: 3),
+        equals(
+          [
+            [1, 2, 3],
+            [2, 3, 4],
           ],
         ),
       );
