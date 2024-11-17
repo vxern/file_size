@@ -119,4 +119,4 @@ fileSizeToString(double.negativeInfinity, inputUnit: Unit.kilobit); // -∞ Kb
 fileSizeToString(double.nan, inputUnit: Unit.exabit); // NaN Eb
 ```
 
-The library provides 
+For more information, have a browse through the exposed symbols and through the documentation on each of them.
