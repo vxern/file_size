@@ -1,3 +1,7 @@
+## 0.3.0
+
+- Added method `bytes` to `Unit` for more natural comparisons.
+
 ## 0.2.0
 
 - Renamed base method from `fileSizeToString` to `humanFileSize()`.
