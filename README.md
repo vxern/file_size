@@ -128,4 +128,14 @@ humanFileSize(double.negativeInfinity, inputUnit: Unit.kilobit); // -∞ Kb
 humanFileSize(double.nan, inputUnit: Unit.exabit); // NaN Eb
 ```
 
+You can perform size comparisons:
+
+```dart
+final byteCount = BigInt.from(50);
+
+byteCount >= Unit.kilobit.bytes; // false
+
+byteCount >= Unit.bit.bytes; // true
+```
+
 For more information, have a browse through the exposed symbols and through the documentation on each of them.
