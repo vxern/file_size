@@ -1,9 +1,5 @@
 import 'package:decimal/decimal.dart';
 import 'package:file_size/file_size.dart';
-import 'package:file_size/src/quantity_display_mode.dart';
-import 'package:file_size/src/unit.dart';
-import 'package:file_size/src/unit_conversion.dart';
-import 'package:file_size/src/unit_style.dart';
 
 /// Given a [quantity], formats the quantity as a human-readable string.
 ///
