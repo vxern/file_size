@@ -23,7 +23,7 @@ fileSizeToString(1000 * 1.2); // 1.2 KB
 fileSizeToString(1000 * 1000 * 1000 * 3); // 3 GB
 ```
 
-By default, `fileSizeToString()` takes the size to be in bytes. You may specify otherwise by passing a different value for `inputUnit`:
+By default, `fileSizeToString()` takes the size to be in bytes (`inputUnit: Unit.byte`). You may specify otherwise by passing a different value for `inputUnit`:
 
 ```dart
 // 1000 bytes -> 1 kilobyte
@@ -36,7 +36,9 @@ fileSizeToString(1000, inputUnit: Unit.bit); // 1 Kb
 fileSizeToString(1000, inputUnit: Unit.kilobit); // 1 Mb
 ```
 
-By default, `fileSizeToString()` converts to the largest unit possible. You may specify otherwise by passing a different value for `unitConversion`:
+The library provides decimal and binary units starting at bit and byte, then following through prefixes kilo-, mega-, giga-, tera-, peta-, exa-, zeta- and yota-. Custom units are supported.
+
+By default, `fileSizeToString()` converts to the largest unit possible (`unitConversion: const BestFitConversion()`). You may specify otherwise by passing a different value for `unitConversion`:
 
 ```dart
 // 1000 bytes -> 1 kilobyte
@@ -49,7 +51,19 @@ fileSizeToString(
 ); // 8000 b
 ```
 
-By default, `fileSizeToString()` converts to the short, uppercase style. You may specify otherwise by passing a different value to `unitStyle`:
+You may also specify the numeral system used when using `BestFitConversion()`. The library has two built-in numeral systems: decimal and binary. To set the numeral system, pass a `numeralSystem` into `BestFitConversion()`:
+
+```dart
+// 1024 bytes -> 1 kibibyte
+fileSizeToString(
+  1024,
+  unitConversion: const BestFitConversion(
+    numeralSystem: BinarySystem(),
+  ),
+); // 1 KiB
+```
+
+By default, `fileSizeToString()` converts to the short, uppercase style (`unitStyle: const ShortUppercaseStyleConversion()`). You may specify otherwise by passing a different value to `unitStyle`:
 
 ```dart
 fileSizeToString(1, inputUnit: Unit.gigabit); // Gb
@@ -73,7 +87,7 @@ fileSizeToString(
 ); // Gbit
 ```
 
-By default, `fileSizeToString()` uses a simple strategy to format the quantity. You may specify otherwise by passing a different value to `quantityDisplayMode`:
+By default, `fileSizeToString()` uses a simple strategy to format the quantity (`quantityDisplayMode: const SimpleDisplayMode()`). You may specify otherwise by passing a different value to `quantityDisplayMode`:
 
 ```dart
 fileSizeToString(1); // 1 B
@@ -96,11 +110,13 @@ The library is resilient to funky quantities being passed in, with the output un
 fileSizeToString(1000 * -2); // -2 KB
 
 // Infinity
-fileSizeToString(double.infinity); // ∞ B
+fileSizeToString(double.infinity, inputUnit: Unit.gigabyte); // ∞ GB
 
 // Negative infinity
 fileSizeToString(double.negativeInfinity, inputUnit: Unit.kilobit); // -∞ Kb
 
 // NaN
-fileSizeToString(double.nan); // NaN B
+fileSizeToString(double.nan, inputUnit: Unit.exabit); // NaN Eb
 ```
+
+The library provides 
