@@ -84,12 +84,12 @@ fileSizeToString(1.25); // 1.25 B
 fileSizeToString(
   1,
   quantityDisplayMode: CustomQuantityDisplayMode(
-    converter: (quantity, {required unit}) => "XIX",
+    converter: (quantity, {required unit}) => 'XIX',
   ),
 ); // XIX B
 ```
 
-The library is resilient to funky data being passed in, with the output unit always being the given [inputUnit]:
+The library is resilient to funky quantities being passed in, with the output unit always being the given [inputUnit]:
 
 ```dart
 // Negative sizes
