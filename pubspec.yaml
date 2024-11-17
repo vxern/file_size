@@ -1,7 +1,9 @@
 name: human_file_size
-version: 0.1.0
+version: 0.1.1
 
-description: Get a human representation of the size of your files.
+description: >-
+  A robust, customisable package to get a human representation of the size of
+  your files.
 
 homepage: https://github.com/vxern/human_file_size
 repository: https://github.com/vxern/human_file_size
