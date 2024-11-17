@@ -12,13 +12,13 @@ import 'package:human_file_size/src/unit_style.dart';
 ///
 /// ```dart
 /// // The size of our file is 1000 bytes.
-/// fileSizeToString(1000); // 1 KB
+/// humanFileSize(1000); // 1 KB
 ///
 /// // The size of our file is 300 bits.
-/// fileSizeToString(300, inputUnit: Unit.bit); // 37.5 B
+/// humanFileSize(300, inputUnit: Unit.bit); // 37.5 B
 ///
 /// // Sometimes, we might know our sizes in... terabytes.
-/// fileSizeToString(6, inputUnit: Unit.terabyte); // 6 TB
+/// humanFileSize(6, inputUnit: Unit.terabyte); // 6 TB
 /// ```
 ///
 /// To specify how the input size is converted into a final unit, provide a
@@ -28,13 +28,13 @@ import 'package:human_file_size/src/unit_style.dart';
 ///
 /// ```dart
 /// // 950 bytes do not fit into a kilobyte...
-/// fileSizeToString(950); // 950 B
+/// humanFileSize(950); // 950 B
 ///
 /// // ...but 1000 bytes do.
-/// fileSizeToString(1000); // 1 KB
+/// humanFileSize(1000); // 1 KB
 ///
 /// // We might want to use binary units instead:
-/// fileSizeToString(
+/// humanFileSize(
 ///   1024,
 ///   unitConversion: const BestFitConversion(numeralSystem: BinarySystem()),
 /// ); // 1 KiB
@@ -46,14 +46,14 @@ import 'package:human_file_size/src/unit_style.dart';
 /// the documentation for [UnitStyle].
 ///
 /// ```dart
-/// fileSizeToString(1000, unitStyle: const ShortLowercaseStyle()); // 1 kB
+/// humanFileSize(1000, unitStyle: const ShortLowercaseStyle()); // 1 kB
 ///
 /// // This is the default.
-/// fileSizeToString(1000, unitStyle: const ShortUppercaseStyle()); // 1 KB
+/// humanFileSize(1000, unitStyle: const ShortUppercaseStyle()); // 1 KB
 ///
-/// fileSizeToString(1000, unitStyle: const LongLowercaseStyle()); // 1 kbyte
+/// humanFileSize(1000, unitStyle: const LongLowercaseStyle()); // 1 kbyte
 ///
-/// fileSizeToString(1000, unitStyle: const LongUppercaseStyle()); // 1 Kbyte
+/// humanFileSize(1000, unitStyle: const LongUppercaseStyle()); // 1 Kbyte
 /// ```
 ///
 /// To specify the mode in which the quantity will be displayed in, provide a
@@ -62,21 +62,21 @@ import 'package:human_file_size/src/unit_style.dart';
 /// read the documentation for [QuantityDisplayMode].
 ///
 /// ```dart
-/// fileSizeToString(1000); // 1 KB
+/// humanFileSize(1000); // 1 KB
 ///
-/// fileSizeToString(1500); // 1.5 KB
+/// humanFileSize(1500); // 1.5 KB
 ///
-/// fileSizeToString(
+/// humanFileSize(
 ///   1500,
 ///   quantityDisplayMode: const SimpleDisplayMode(round: true),
 /// ); // 2 KB
 ///
-/// fileSizeToString(
+/// humanFileSize(
 ///   1500,
 ///   quantityDisplayMode: const SimpleDisplayMode(truncate: true),
 /// ); // 1 KB
 ///
-/// fileSizeToString(
+/// humanFileSize(
 ///   1000,
 ///   quantityDisplayMode: CustomQuantityDisplayMode(
 ///     converter: (quantity, {required unit}) {
@@ -85,7 +85,7 @@ import 'package:human_file_size/src/unit_style.dart';
 ///   ),
 /// );
 /// ```
-String fileSizeToString(
+String humanFileSize(
   num quantity, {
   Unit? inputUnit,
   UnitConversion unitConversion = defaultUnitConversion,
@@ -152,3 +152,6 @@ String _formatFileSize(
 
   return '$formattedQuantity $formattedUnit';
 }
+
+/// Alias of [humanFileSize].
+const fileSizeToString = humanFileSize;

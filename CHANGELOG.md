@@ -1,3 +1,8 @@
+## 0.2.0
+
+- Renamed base method from `fileSizeToString` to `humanFileSize()`.
+- Added extension method `humanFileSize` on `num`, `Decimal`, `BigInt` and `Rational`.
+
 ## 0.1.2
 
 - Fixed pub.dev score.
