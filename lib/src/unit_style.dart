@@ -1,4 +1,4 @@
-import 'package:file_size/src/unit.dart';
+import 'package:human_file_size/src/unit.dart';
 
 /// The default unit style is [ShortUppercaseStyle].
 const defaultUnitStyle = ShortUppercaseStyle();

@@ -1,5 +1,5 @@
-import 'package:file_size/src/numeral_system.dart';
-import 'package:file_size/src/unit.dart';
+import 'package:human_file_size/src/numeral_system.dart';
+import 'package:human_file_size/src/unit.dart';
 
 /// The default unit conversion is [BestFitConversion] with the [DecimalSystem].
 const defaultUnitConversion = BestFitConversion(numeralSystem: DecimalSystem());

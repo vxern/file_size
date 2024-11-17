@@ -1,4 +1,4 @@
-import 'package:file_size/file_size.dart';
+import 'package:human_file_size/human_file_size.dart';
 
 void main() {
   fileSizeToString(1); // 1 B

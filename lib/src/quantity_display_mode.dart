@@ -1,5 +1,5 @@
 import 'package:decimal/decimal.dart';
-import 'package:file_size/src/unit.dart';
+import 'package:human_file_size/src/unit.dart';
 
 /// The default quantity display mode is [SimpleDisplayMode].
 const defaultQuantityDisplayMode = SimpleDisplayMode();

@@ -1,5 +1,5 @@
 import 'package:decimal/decimal.dart';
-import 'package:file_size/file_size.dart';
+import 'package:human_file_size/human_file_size.dart';
 import 'package:test/test.dart';
 
 import 'utils.dart';

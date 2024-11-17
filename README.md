@@ -2,7 +2,7 @@
 
 ### Usage
 
-`file_size` exposes a single, heavily parametrised function `fileSizeToString()`.
+`human_file_size` exposes a single, heavily parametrised function `fileSizeToString()`.
 
 The most basic usage is as follows:
 

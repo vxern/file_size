@@ -1,11 +1,11 @@
-name: file_size
+name: human_file_size
 version: 0.1.0
 
 description: Get a human representation of the size of your files.
 
-homepage: https://github.com/vxern/file_size
-repository: https://github.com/vxern/file_size
-issue_tracker: https://github.com/vxern/file_size/issues
+homepage: https://github.com/vxern/human_file_size
+repository: https://github.com/vxern/human_file_size
+issue_tracker: https://github.com/vxern/human_file_size/issues
 
 environment:
   sdk: ">=3.0.0 <4.0.0"

@@ -1,5 +1,5 @@
 import 'package:decimal/decimal.dart';
-import 'package:file_size/src/unit_symbols.dart';
+import 'package:human_file_size/src/unit_symbols.dart';
 
 /// The default unit is [Unit.byte].
 final defaultUnit = Unit.byte;
