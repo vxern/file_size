@@ -433,6 +433,9 @@ final class Unit {
   /// The number of bits this unit is equivalent to.
   final BigInt bits;
 
+  /// The number of bytes this unit is equivalent to.
+  BigInt get bytes => bits ~/ Unit.byte.bits;
+
   /// The symbols used to represent this unit.
   final UnitSymbols symbols;
 
