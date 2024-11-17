@@ -2,7 +2,7 @@
 
 ### Usage
 
-`human_file_size` exposes a single, heavily parametrised function `humanFileSize()`.
+`human_file_size` exposes a function `humanFileSize()` and extension method `num.humanFileSize()`.
 
 The most basic usage is as follows:
 
@@ -21,6 +21,15 @@ humanFileSize(1000 * 1.2); // 1.2 KB
 
 // 3 gigabytes in bytes
 humanFileSize(1000 * 1000 * 1000 * 3); // 3 GB
+```
+
+Or, using the extension method:
+```dart
+10.humanFileSize(); // 10 B
+
+51.22.humanFileSize(); // 51.22 B
+
+1234.humanFileSize(); // 1.234 KB
 ```
 
 By default, `humanFileSize()` takes the size to be in bytes (`inputUnit: Unit.byte`). You may specify otherwise by passing a different value for `inputUnit`:
