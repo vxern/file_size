@@ -1,6 +1,10 @@
+## 0.1.2
+
+- Fixed pub.dev score.
+
 ## 0.1.1
 
-- Fix pub.dev score.
+- Fixed pub.dev score.
 
 ## 0.1.0
 
