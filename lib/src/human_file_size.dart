@@ -6,6 +6,7 @@ import 'package:human_file_size/src/unit_style.dart';
 
 /// Given a [quantity], formats the quantity as a human-readable string.
 ///
+/// {@template humanFileSize}
 /// To specify the unit the quantity is in, provide a value for [inputUnit]. By
 /// default, the quantity is taken to be in bytes. For more information on
 /// units, read the documentation for [Unit].
@@ -85,6 +86,7 @@ import 'package:human_file_size/src/unit_style.dart';
 ///   ),
 /// );
 /// ```
+/// {@endtemplate}
 String humanFileSize(
   num quantity, {
   Unit? inputUnit,
@@ -155,3 +157,31 @@ String _formatFileSize(
 
 /// Alias of [humanFileSize].
 const fileSizeToString = humanFileSize;
+
+/// Adds a method [humanFileSize] to [num]s.
+///
+/// Usage:
+///
+/// ```dart
+/// // Integer
+/// 10.humanFileSize();
+/// ```
+extension NumHumanFileSize on num {
+  /// Takes this [num] as the quantity of data, before formatting it as a
+  /// human-readable string.
+  ///
+  /// {@macro humanFileSize}
+  String humanFileSize({
+    Unit? inputUnit,
+    UnitConversion unitConversion = defaultUnitConversion,
+    UnitStyle unitStyle = defaultUnitStyle,
+    QuantityDisplayMode quantityDisplayMode = defaultQuantityDisplayMode,
+  }) =>
+      fileSizeToString(
+        this,
+        inputUnit: inputUnit,
+        unitConversion: unitConversion,
+        unitStyle: unitStyle,
+        quantityDisplayMode: quantityDisplayMode,
+      );
+}
