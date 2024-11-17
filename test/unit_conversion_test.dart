@@ -22,7 +22,7 @@ void main() {
             final unitQuantity =
                 Decimal.parse((previousQuantity * previousFactor).toString());
             expect(
-              fileSizeToString(previousQuantity, inputUnit: current),
+              humanFileSize(previousQuantity, inputUnit: current),
               equals(
                 [
                   defaultQuantityDisplayMode.format(
@@ -35,7 +35,7 @@ void main() {
             );
 
             expect(
-              fileSizeToString(1, inputUnit: current),
+              humanFileSize(1, inputUnit: current),
               equals('1 ${defaultUnitStyle.format(current)}'),
             );
 
@@ -44,7 +44,7 @@ void main() {
             final nextFactor = next.bits / current.bits;
             final nextQuantity = nextFactor;
             expect(
-              fileSizeToString(nextQuantity, inputUnit: current),
+              humanFileSize(nextQuantity, inputUnit: current),
               equals('1 ${defaultUnitStyle.format(next)}'),
             );
           }
@@ -52,9 +52,9 @@ void main() {
       );
 
       test('takes [numeralSystem] into account.', () {
-        expect(fileSizeToString(1024), equals('1.024 KB'));
+        expect(humanFileSize(1024), equals('1.024 KB'));
         expect(
-          fileSizeToString(
+          humanFileSize(
             1024,
             unitConversion: const BestFitConversion(
               numeralSystem: BinarySystem(),
@@ -65,7 +65,7 @@ void main() {
       });
 
       test('displays the size in bits if equal to zero.', () {
-        expect(fileSizeToString(0), equals('0 b'));
+        expect(humanFileSize(0), equals('0 b'));
       });
     });
   });
@@ -76,9 +76,9 @@ void main() {
         final unitConversion = SpecificUnitConversion(unit: Unit.kilobyte);
 
         const bytes = 1000 * 1000 * 8;
-        expect(fileSizeToString(bytes), equals('8 MB'));
+        expect(humanFileSize(bytes), equals('8 MB'));
         expect(
-          fileSizeToString(bytes, unitConversion: unitConversion),
+          humanFileSize(bytes, unitConversion: unitConversion),
           equals('8000 KB'),
         );
       });

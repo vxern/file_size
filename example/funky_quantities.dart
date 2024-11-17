@@ -2,14 +2,14 @@ import 'package:human_file_size/human_file_size.dart';
 
 void main() {
   // Negative sizes
-  fileSizeToString(1000 * -2); // -2 KB
+  humanFileSize(1000 * -2); // -2 KB
 
   // Infinity
-  fileSizeToString(double.infinity); // ∞ B
+  humanFileSize(double.infinity); // ∞ B
 
   // Negative infinity
-  fileSizeToString(double.negativeInfinity, inputUnit: Unit.kilobit); // -∞ Kb
+  humanFileSize(double.negativeInfinity, inputUnit: Unit.kilobit); // -∞ Kb
 
   // NaN
-  fileSizeToString(double.nan); // NaN B
+  humanFileSize(double.nan); // NaN B
 }
