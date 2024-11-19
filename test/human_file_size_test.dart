@@ -111,6 +111,7 @@ void main() {
       expect(
         humanFileSize(
           1000,
+          // ignore: deprecated_member_use_from_same_package
           quantityDisplayMode: CustomQuantityDisplayMode(
             converter: (quantity, {required unit}) => '<insert quantity here>',
           ),

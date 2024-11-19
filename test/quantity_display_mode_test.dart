@@ -77,6 +77,7 @@ void main() {
     group('format()', () {
       test('formats the quantity in a custom format.', () {
         expect(
+          // ignore: deprecated_member_use_from_same_package
           CustomQuantityDisplayMode(
             converter: (_, {required unit}) => '<insert quantity here>',
           ).format(Decimal.one, unit: Unit.byte),

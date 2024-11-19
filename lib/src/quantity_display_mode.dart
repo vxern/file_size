@@ -89,6 +89,9 @@ class CustomQuantityDisplayMode extends QuantityDisplayMode {
   final QuantityFormatter converter;
 
   /// Returns an instance of [CustomQuantityDisplayMode].
+  @Deprecated(
+    'Create your own concrete implementation of [QuantityDisplayMode].',
+  )
   const CustomQuantityDisplayMode({
     required this.converter,
   });

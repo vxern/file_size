@@ -3,6 +3,7 @@
 - Added `intl` as a dependency.
 - Added `IntlQuantityDisplayMode`.
 - Renamed `SimpleDisplayMode` to `SimpleQuantityDisplayMode` for consistency.
+- Deprecated `CustomQuantityDisplayMode` in favour of concrete implementations of `QuantityDisplayMode`.
 
 ## 0.3.0
 

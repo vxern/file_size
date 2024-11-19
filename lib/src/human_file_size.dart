@@ -78,13 +78,11 @@ import 'package:human_file_size/src/unit_style.dart';
 /// ); // 1 KB
 ///
 /// humanFileSize(
-///   1000,
-///   quantityDisplayMode: CustomQuantityDisplayMode(
-///     converter: (quantity, {required unit}) {
-///       // Convert your quantity into a human-readable string here.
-///     },
+///   1.234,
+///   quantityDisplayMode: IntlQuantityDisplayMode(
+///     numberFormat: NumberFormat.decimalPattern('pl'),
 ///   ),
-/// );
+/// ); // 1,234 B
 /// ```
 /// {@endtemplate}
 String humanFileSize(
