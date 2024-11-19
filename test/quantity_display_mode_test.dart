@@ -1,15 +1,16 @@
 import 'package:decimal/decimal.dart';
 import 'package:human_file_size/human_file_size.dart';
+import 'package:intl/intl.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('SimpleDisplayMode', () {
+  group('SimpleQuantityDisplayMode', () {
     group('format()', () {
       test(
         'if [round] is true, rounds the quantity to the nearest whole number.',
         () {
           expect(
-            const SimpleDisplayMode(round: true).format(
+            const SimpleQuantityDisplayMode(round: true).format(
               Decimal.parse('1.5'),
               unit: Unit.byte,
             ),
@@ -22,7 +23,7 @@ void main() {
         'if [truncate] is true, truncates the quantity.',
         () {
           expect(
-            const SimpleDisplayMode(truncate: true).format(
+            const SimpleQuantityDisplayMode(truncate: true).format(
               Decimal.parse('1.5'),
               unit: Unit.byte,
             ),
@@ -35,7 +36,7 @@ void main() {
         'removes trailing zeroes from whole numbers.',
         () {
           expect(
-            const SimpleDisplayMode().format(
+            const SimpleQuantityDisplayMode().format(
               Decimal.parse('1.0'),
               unit: Unit.byte,
             ),
@@ -48,7 +49,7 @@ void main() {
         'displays doubles using standard string representation.',
         () {
           expect(
-            const SimpleDisplayMode().format(
+            const SimpleQuantityDisplayMode().format(
               Decimal.parse('1.52'),
               unit: Unit.byte,
             ),
@@ -59,10 +60,24 @@ void main() {
     });
   });
 
+  group('IntlQuantityDisplayMode', () {
+    group('format()', () {
+      test("formats the quantity using [NumberFormat]'s formatter.", () {
+        expect(
+          IntlQuantityDisplayMode(
+            numberFormat: NumberFormat.decimalPattern('pl'),
+          ).format(Decimal.parse('1.234'), unit: Unit.byte),
+          '1,234',
+        );
+      });
+    });
+  });
+
   group('CustomQuantityDisplayMode', () {
     group('format()', () {
-      test('displays the quantity in a custom format.', () {
+      test('formats the quantity in a custom format.', () {
         expect(
+          // ignore: deprecated_member_use_from_same_package
           CustomQuantityDisplayMode(
             converter: (_, {required unit}) => '<insert quantity here>',
           ).format(Decimal.one, unit: Unit.byte),

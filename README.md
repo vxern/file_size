@@ -96,23 +96,22 @@ humanFileSize(
 ); // Gbit
 ```
 
-By default, `humanFileSize()` uses a simple strategy to format the quantity (`quantityDisplayMode: const SimpleDisplayMode()`). You may specify otherwise by passing a different value to `quantityDisplayMode`:
+By default, `humanFileSize()` uses a simple strategy to format the quantity (`quantityDisplayMode: const SimpleQuantityDisplayMode()`). You may specify otherwise by passing a different value to `quantityDisplayMode`:
 
 ```dart
+// `SimpleQuantityDisplayMode` is the default mode.
 humanFileSize(1); // 1 B
 
-humanFileSize(1.25); // 1.25 B
-
-// If you were feeling extra Roman today, you could do:
+// `IntlQuantityDisplayMode` can be used for localisation.
 humanFileSize(
-  1,
-  quantityDisplayMode: CustomQuantityDisplayMode(
-    converter: (quantity, {required unit}) => 'XIX',
+  1.234,
+  quantityDisplayMode: IntlQuantityDisplayMode(
+    numberFormat: NumberFormat.decimalPattern('pl'),
   ),
-); // XIX B
+); // 1,234 B
 ```
 
-The library is resilient to funky quantities being passed in, with the output unit always being the given [inputUnit]:
+The library is resilient to funky quantities being passed in, with the output unit always being the given `inputUnit`:
 
 ```dart
 // Negative sizes

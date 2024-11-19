@@ -100,7 +100,8 @@ void main() {
 
   group('quantity display mode', () {
     test(
-      'takes [quantityDisplayMode] to be [SimpleDisplayMode] by default.',
+      'takes [quantityDisplayMode] to be [SimpleQuantityDisplayMode] by '
+      'default.',
       () {
         expect(humanFileSize(1.23), equals('1.23 B'));
       },
@@ -110,6 +111,7 @@ void main() {
       expect(
         humanFileSize(
           1000,
+          // ignore: deprecated_member_use_from_same_package
           quantityDisplayMode: CustomQuantityDisplayMode(
             converter: (quantity, {required unit}) => '<insert quantity here>',
           ),
