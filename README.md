@@ -96,7 +96,7 @@ humanFileSize(
 ); // Gbit
 ```
 
-By default, `humanFileSize()` uses a simple strategy to format the quantity (`quantityDisplayMode: const SimpleDisplayMode()`). You may specify otherwise by passing a different value to `quantityDisplayMode`:
+By default, `humanFileSize()` uses a simple strategy to format the quantity (`quantityDisplayMode: const SimpleQuantityDisplayMode()`). You may specify otherwise by passing a different value to `quantityDisplayMode`:
 
 ```dart
 humanFileSize(1); // 1 B

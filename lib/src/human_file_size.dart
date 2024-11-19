@@ -59,8 +59,8 @@ import 'package:human_file_size/src/unit_style.dart';
 ///
 /// To specify the mode in which the quantity will be displayed in, provide a
 /// value for [quantityDisplayMode]. By default, the quantity will be displayed
-/// using [SimpleDisplayMode]. For more information on quantity display modes,
-/// read the documentation for [QuantityDisplayMode].
+/// using [SimpleQuantityDisplayMode]. For more information on quantity display
+/// modes, read the documentation for [QuantityDisplayMode].
 ///
 /// ```dart
 /// humanFileSize(1000); // 1 KB
@@ -69,12 +69,12 @@ import 'package:human_file_size/src/unit_style.dart';
 ///
 /// humanFileSize(
 ///   1500,
-///   quantityDisplayMode: const SimpleDisplayMode(round: true),
+///   quantityDisplayMode: const SimpleQuantityDisplayMode(round: true),
 /// ); // 2 KB
 ///
 /// humanFileSize(
 ///   1500,
-///   quantityDisplayMode: const SimpleDisplayMode(truncate: true),
+///   quantityDisplayMode: const SimpleQuantityDisplayMode(truncate: true),
 /// ); // 1 KB
 ///
 /// humanFileSize(
@@ -95,15 +95,19 @@ String humanFileSize(
   QuantityDisplayMode quantityDisplayMode = defaultQuantityDisplayMode,
 }) {
   inputUnit ??= defaultUnit;
+  final numberFormat = quantityDisplayMode is IntlQuantityDisplayMode
+      ? quantityDisplayMode.numberFormat
+      : defaultNumberFormat;
 
   if (!quantity.isFinite) {
     final String formattedQuantity;
     if (quantity.isNaN) {
-      formattedQuantity = 'NaN';
+      formattedQuantity = numberFormat.symbols.NAN;
     } else if (quantity.isNegative) {
-      formattedQuantity = '-∞';
+      formattedQuantity =
+          '${numberFormat.symbols.MINUS_SIGN}${numberFormat.symbols.INFINITY}';
     } else {
-      formattedQuantity = '∞';
+      formattedQuantity = numberFormat.symbols.INFINITY;
     }
 
     final formattedUnit = unitStyle.format(inputUnit);

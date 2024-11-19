@@ -100,7 +100,8 @@ void main() {
 
   group('quantity display mode', () {
     test(
-      'takes [quantityDisplayMode] to be [SimpleDisplayMode] by default.',
+      'takes [quantityDisplayMode] to be [SimpleQuantityDisplayMode] by '
+      'default.',
       () {
         expect(humanFileSize(1.23), equals('1.23 B'));
       },
