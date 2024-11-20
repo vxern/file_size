@@ -42,22 +42,6 @@ import 'package:intl/intl.dart';
 /// ); // 1 KiB
 /// ```
 ///
-/// To specify the style which the unit will be displayed in, provide a value
-/// for [unitStyle]. By default, the unit will be displayed concisely in
-/// uppercase form (Kb, GB, Mb, etc.). For more information on unit styles, read
-/// the documentation for [UnitStyle].
-///
-/// ```dart
-/// humanFileSize(1000, unitStyle: const ShortLowercaseStyle()); // 1 kB
-///
-/// // This is the default.
-/// humanFileSize(1000, unitStyle: const ShortUppercaseStyle()); // 1 KB
-///
-/// humanFileSize(1000, unitStyle: const LongLowercaseStyle()); // 1 kbyte
-///
-/// humanFileSize(1000, unitStyle: const LongUppercaseStyle()); // 1 Kbyte
-/// ```
-///
 /// To specify the mode in which the quantity will be displayed in, provide a
 /// value for [quantityDisplayMode]. By default, the quantity will be displayed
 /// using [SimpleQuantityDisplayMode]. For more information on quantity display
@@ -84,6 +68,40 @@ import 'package:intl/intl.dart';
 ///     numberFormat: NumberFormat.decimalPattern('pl'),
 ///   ),
 /// ); // 1,234 B
+/// ```
+///
+/// To specify the style which the unit will be displayed in, provide a value
+/// for [unitStyle]. By default, the unit will be displayed concisely in
+/// uppercase form (Kb, GB, Mb, etc.). For more information on unit styles, read
+/// the documentation for [UnitStyle].
+///
+/// ```dart
+/// humanFileSize(1000, unitStyle: const ShortLowercaseStyle()); // 1 kB
+///
+/// // This is the default.
+/// humanFileSize(1000, unitStyle: const ShortUppercaseStyle()); // 1 KB
+///
+/// humanFileSize(1000, unitStyle: const LongLowercaseStyle()); // 1 kbyte
+///
+/// humanFileSize(1000, unitStyle: const LongUppercaseStyle()); // 1 Kbyte
+/// ```
+///
+/// To specify the method by which to obtain the output format, provide a value
+/// for [outputFormatter]. By default, the output format will be
+/// '{quantity} {unit}'.
+///
+/// ```dart
+/// humanFileSize(1); // 1 B
+///
+/// humanFileSize(
+///   1,
+///   outputFormatter: const SimpleOutputFormatter(includeSpace: false),
+/// ); // 1B
+///
+/// humanFileSize(
+///   1,
+///   outputFormatter: const SimpleOutputFormatter(unitFirst: true),
+/// ); // B 1
 /// ```
 /// {@endtemplate}
 String humanFileSize(
