@@ -28,6 +28,6 @@ class SimpleOutputFormatter extends OutputFormatter {
   String format({required String quantity, required String unit}) {
     final (first, second) = unitFirst ? (unit, quantity) : (quantity, unit);
 
-    return [first, if (includeSpace) '', second].join();
+    return [first, if (includeSpace) ' ', second].join();
   }
 }
