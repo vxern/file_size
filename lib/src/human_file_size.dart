@@ -88,7 +88,7 @@ import 'package:intl/intl.dart';
 ///
 /// To specify the method by which to obtain the output format, provide a value
 /// for [outputFormatter]. By default, the output format will be
-/// '{quantity} {unit}'.
+/// `{quantity} {unit}`.
 ///
 /// ```dart
 /// humanFileSize(1); // 1 B

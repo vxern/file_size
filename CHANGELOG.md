@@ -1,3 +1,7 @@
+## 0.5.1
+
+- Added missing piece of documentation.
+
 ## 0.5.0
 
 - Added `OutputFormatter` to format the produced output.

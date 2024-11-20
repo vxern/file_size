@@ -111,6 +111,22 @@ humanFileSize(
 ); // Gbit
 ```
 
+To specify the method by which to obtain the output format, provide a value for `outputFormatter`. By default, the output format will be `{quantity} {unit}`.
+
+```dart
+humanFileSize(1); // 1 B
+
+humanFileSize(
+  1,
+  outputFormatter: const SimpleOutputFormatter(includeSpace: false),
+); // 1B
+
+humanFileSize(
+  1,
+  outputFormatter: const SimpleOutputFormatter(unitFirst: true),
+); // B 1
+```
+
 The library is resilient to funky quantities being passed in, with the output unit always being the given `inputUnit`:
 
 ```dart

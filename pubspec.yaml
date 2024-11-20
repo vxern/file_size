@@ -1,5 +1,5 @@
 name: human_file_size
-version: 0.5.0
+version: 0.5.1
 
 description: >-
   A robust, customisable package to get a human representation of the size of
