@@ -141,7 +141,7 @@ void main() {
   });
 }
 
-class MockOutputFormatter extends OutputFormatter {
+final class MockOutputFormatter extends OutputFormatter {
   const MockOutputFormatter();
 
   @override
