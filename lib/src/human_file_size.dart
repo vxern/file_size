@@ -192,6 +192,7 @@ extension NumHumanFileSize on num {
     UnitConversion unitConversion = defaultUnitConversion,
     UnitStyle unitStyle = defaultUnitStyle,
     QuantityDisplayMode quantityDisplayMode = defaultQuantityDisplayMode,
+    OutputFormatter outputFormatter = defaultOutputFormatter,
   }) =>
       fileSizeToString(
         this,
@@ -199,5 +200,6 @@ extension NumHumanFileSize on num {
         unitConversion: unitConversion,
         unitStyle: unitStyle,
         quantityDisplayMode: quantityDisplayMode,
+        outputFormatter: outputFormatter,
       );
 }
