@@ -15,7 +15,8 @@ abstract class QuantityDisplayMode {
   /// Returns an instance of [QuantityDisplayMode].
   const QuantityDisplayMode();
 
-  /// Given a [quantity] and a [unit], formats it as a human-readable string.
+  /// Given a [quantity] and a [unit], formats [quantity] as a human-readable
+  /// string.
   String format(Decimal quantity, {required Unit unit});
 }
 
@@ -78,12 +79,16 @@ class IntlQuantityDisplayMode extends QuantityDisplayMode {
 }
 
 /// A function used to format a [quantity] based on its [unit].
+@Deprecated('Do not use [CustomQuantityDisplayMode].')
 typedef QuantityFormatter = String Function(
   Decimal quantity, {
   required Unit unit,
 });
 
 /// The quantity passes through a custom converter to get its display format.
+@Deprecated(
+  'Create your own concrete implementation of [QuantityDisplayMode].',
+)
 class CustomQuantityDisplayMode extends QuantityDisplayMode {
   /// The converter used to format the quantity.
   final QuantityFormatter converter;
