@@ -60,6 +60,21 @@ humanFileSize(
 ); // 8000 b
 ```
 
+By default, `humanFileSize()` uses a simple strategy to format the quantity (`quantityDisplayMode: const SimpleQuantityDisplayMode()`). You may specify otherwise by passing a different value to `quantityDisplayMode`:
+
+```dart
+// `SimpleQuantityDisplayMode` is the default mode.
+humanFileSize(1); // 1 B
+
+// `IntlQuantityDisplayMode` can be used for localisation.
+humanFileSize(
+  1.234,
+  quantityDisplayMode: IntlQuantityDisplayMode(
+    numberFormat: NumberFormat.decimalPattern('pl'),
+  ),
+); // 1,234 B
+```
+
 You may also specify the numeral system used when using `BestFitConversion()`. The library has two built-in numeral systems: decimal and binary. To set the numeral system, pass a `numeralSystem` into `BestFitConversion()`:
 
 ```dart
@@ -94,21 +109,6 @@ humanFileSize(
   inputUnit: Unit.gigabit,
   unitStyle: const LongUppercaseStyle(),
 ); // Gbit
-```
-
-By default, `humanFileSize()` uses a simple strategy to format the quantity (`quantityDisplayMode: const SimpleQuantityDisplayMode()`). You may specify otherwise by passing a different value to `quantityDisplayMode`:
-
-```dart
-// `SimpleQuantityDisplayMode` is the default mode.
-humanFileSize(1); // 1 B
-
-// `IntlQuantityDisplayMode` can be used for localisation.
-humanFileSize(
-  1.234,
-  quantityDisplayMode: IntlQuantityDisplayMode(
-    numberFormat: NumberFormat.decimalPattern('pl'),
-  ),
-); // 1,234 B
 ```
 
 The library is resilient to funky quantities being passed in, with the output unit always being the given `inputUnit`:
