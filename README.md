@@ -1,4 +1,4 @@
-## Get a human representation of the size of your files.
+## A robust, customisable package to get a human representation of the size of your files.
 
 ### Usage
 
