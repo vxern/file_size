@@ -1,3 +1,7 @@
+## 0.5.0
+
+- Added `OutputFormatter` to format the produced output.
+
 ## 0.4.0
 
 - Added `intl` as a dependency.
