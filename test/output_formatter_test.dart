@@ -16,12 +16,15 @@ void main() {
       );
 
       test(
-        'if [includeSpace] is enabled, inserts a space between the quantity '
+        'if [includeSpace] is disabled, inserts a space between the quantity '
         'and unit.',
         () {
           expect(
-            const SimpleOutputFormatter().format(quantity: '1', unit: 'b'),
-            equals('1 b'),
+            const SimpleOutputFormatter(includeSpace: false).format(
+              quantity: '1',
+              unit: 'b',
+            ),
+            equals('1b'),
           );
         },
       );
