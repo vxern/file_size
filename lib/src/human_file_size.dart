@@ -90,8 +90,8 @@ String humanFileSize(
   num quantity, {
   Unit? inputUnit,
   UnitConversion unitConversion = defaultUnitConversion,
-  UnitStyle unitStyle = defaultUnitStyle,
   QuantityDisplayMode quantityDisplayMode = defaultQuantityDisplayMode,
+  UnitStyle unitStyle = defaultUnitStyle,
   OutputFormatter outputFormatter = defaultOutputFormatter,
 }) {
   inputUnit ??= defaultUnit;
