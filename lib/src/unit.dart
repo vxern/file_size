@@ -439,8 +439,8 @@ final class Unit {
   /// The symbols used to represent this unit.
   final UnitSymbols symbols;
 
-  /// If set to true, fractional quantities of this unit will be rounded to a
-  /// whole number.
+  /// If enabled, fractional quantities of this unit will be rounded to a whole
+  /// number.
   final bool isIndivisible;
 
   /// Returns an instance of [Unit].
