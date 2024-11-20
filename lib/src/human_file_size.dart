@@ -112,8 +112,8 @@ String humanFileSize(
       quantity,
       inputUnit: inputUnit,
       unitConversion: unitConversion,
-      unitStyle: unitStyle,
       quantityDisplayMode: quantityDisplayMode,
+      unitStyle: unitStyle,
     );
   }
 
@@ -148,8 +148,8 @@ _FormattedInformation _processFiniteFileSize(
   num quantity, {
   required Unit inputUnit,
   required UnitConversion unitConversion,
-  required UnitStyle unitStyle,
   required QuantityDisplayMode quantityDisplayMode,
+  required UnitStyle unitStyle,
 }) {
   if (inputUnit.isIndivisible && quantity.truncate() != quantity) {
     quantity = quantity.round();
@@ -190,8 +190,8 @@ extension NumHumanFileSize on num {
   String humanFileSize({
     Unit? inputUnit,
     UnitConversion unitConversion = defaultUnitConversion,
-    UnitStyle unitStyle = defaultUnitStyle,
     QuantityDisplayMode quantityDisplayMode = defaultQuantityDisplayMode,
+    UnitStyle unitStyle = defaultUnitStyle,
     OutputFormatter outputFormatter = defaultOutputFormatter,
   }) =>
       fileSizeToString(
