@@ -120,4 +120,31 @@ void main() {
       );
     });
   });
+
+  group('output formatter', () {
+    test(
+      'takes [outputFormatter] to be [SimpleOutputFormatter] by default.',
+      () {
+        expect(humanFileSize(1, inputUnit: Unit.bit), equals('1 b'));
+      },
+    );
+
+    test('takes [outputFormatter] into account.', () {
+      expect(
+        humanFileSize(
+          1,
+          outputFormatter: const MockOutputFormatter(),
+        ),
+        equals('1B'),
+      );
+    });
+  });
+}
+
+class MockOutputFormatter extends OutputFormatter {
+  const MockOutputFormatter();
+
+  @override
+  String format({required String quantity, required String unit}) =>
+      '$quantity$unit';
 }
