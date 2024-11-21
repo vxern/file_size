@@ -1,20 +1,20 @@
 import 'package:human_file_size/src/unit.dart';
-import 'package:human_file_size/src/unit_styles/long_uppercase_style.dart';
+import 'package:human_file_size/src/unit_styles/short_uppercase_unit_style.dart';
 import 'package:human_file_size/src/unit_symbols.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('format()', () {
-    test("returns the unit's long, uppercase representation.", () {
-      expect(const LongUppercaseStyle().format(Unit.gigabit), 'Gbit');
+    test("returns the unit's short, uppercase representation.", () {
+      expect(const ShortUppercaseUnitStyle().format(Unit.gigabit), 'Gb');
     });
 
     test(
-      "returns the unit's short, lowercase symbol if the long, uppercase "
+      "returns the unit's short, lowercase symbol if the short, uppercase "
       'representation is not defined.',
       () {
         expect(
-          const LongUppercaseStyle().format(
+          const ShortUppercaseUnitStyle().format(
             Unit(
               BigInt.zero,
               symbols: const UnitSymbols(shortLowercase: 'fallback'),

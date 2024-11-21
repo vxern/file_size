@@ -5,11 +5,15 @@ import 'package:human_file_size/src/unit_styles/unit_style.dart';
 ///
 /// For example, a kilobit will be shown as `Kbit` and a kilobyte will be
 /// shown as `Kbyte`.
-class LongUppercaseStyle extends UnitStyle {
-  /// Returns an instance of [LongUppercaseStyle].
-  const LongUppercaseStyle();
+class LongUppercaseUnitStyle extends UnitStyle {
+  /// Returns an instance of [LongUppercaseUnitStyle].
+  const LongUppercaseUnitStyle();
 
   @override
   String format(Unit unit) =>
       unit.symbols.longUppercase ?? unit.symbols.shortLowercase;
 }
+
+/// Alias of [LongUppercaseUnitStyle].
+@Deprecated('Use [LongUppercaseUnitStyle] instead.')
+typedef LongUppercaseStyle = LongUppercaseUnitStyle;
