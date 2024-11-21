@@ -1,3 +1,9 @@
+## 0.6.0
+
+- Split up the previously monolithic files into a file per class.
+- Split up test files to match the layout of the codebase.
+- Moved defaults into a new file `defaults.dart`.
+
 ## 0.5.1
 
 - Added missing piece of documentation.
