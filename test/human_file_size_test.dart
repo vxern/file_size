@@ -85,19 +85,6 @@ void main() {
     });
   });
 
-  group('unit style', () {
-    test('takes [unitStyle] to be [ShortUppercaseStyle] by default.', () {
-      expect(humanFileSize(1000), equals('1 KB'));
-    });
-
-    test('takes [unitStyle] into account.', () {
-      expect(
-        humanFileSize(1000, unitStyle: const ShortLowercaseStyle()),
-        equals('1 kB'),
-      );
-    });
-  });
-
   group('quantity display mode', () {
     test(
       'takes [quantityDisplayMode] to be [SimpleQuantityDisplayMode] by '
@@ -117,6 +104,19 @@ void main() {
           ),
         ),
         equals('<insert quantity here> KB'),
+      );
+    });
+  });
+
+  group('unit style', () {
+    test('takes [unitStyle] to be [ShortUppercaseStyle] by default.', () {
+      expect(humanFileSize(1000), equals('1 KB'));
+    });
+
+    test('takes [unitStyle] into account.', () {
+      expect(
+        humanFileSize(1000, unitStyle: const ShortLowercaseStyle()),
+        equals('1 kB'),
       );
     });
   });

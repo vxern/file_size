@@ -1,8 +1,10 @@
-import 'package:human_file_size/src/output_formatter.dart';
-import 'package:human_file_size/src/quantity_display_mode.dart';
+import 'package:human_file_size/src/defaults.dart';
+import 'package:human_file_size/src/output_formatters/output_formatter.dart';
+import 'package:human_file_size/src/quantity_display_modes/intl_quantity_display_mode.dart';
+import 'package:human_file_size/src/quantity_display_modes/quantity_display_mode.dart';
 import 'package:human_file_size/src/unit.dart';
-import 'package:human_file_size/src/unit_conversion.dart';
-import 'package:human_file_size/src/unit_style.dart';
+import 'package:human_file_size/src/unit_conversions/unit_conversion.dart';
+import 'package:human_file_size/src/unit_styles/unit_style.dart';
 import 'package:intl/intl.dart';
 
 /// Given a [quantity], formats the quantity as a human-readable string.
