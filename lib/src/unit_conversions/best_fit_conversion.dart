@@ -1,16 +1,8 @@
-import 'package:human_file_size/src/numeral_system.dart';
+import 'package:human_file_size/src/numeral_systems/binary_system.dart';
+import 'package:human_file_size/src/numeral_systems/decimal_system.dart';
+import 'package:human_file_size/src/numeral_systems/numeral_system.dart';
 import 'package:human_file_size/src/unit.dart';
-
-/// The default unit conversion is [BestFitConversion] with the [DecimalSystem].
-const defaultUnitConversion = BestFitConversion(numeralSystem: DecimalSystem());
-
-/// Defines which unit the file size should be converted into before displaying.
-abstract class UnitConversion {
-  const UnitConversion._();
-
-  /// Given a size in [bits], returns a [Unit] to represent it
-  Unit bitsToUnit({required BigInt bits});
-}
+import 'package:human_file_size/src/unit_conversions/unit_conversion.dart';
 
 /// The size is converted to the largest possible unit that most accurately
 /// describes its magnitude, subject to the [NumeralSystem] used. The conversion
@@ -33,7 +25,7 @@ class BestFitConversion extends UnitConversion {
   ///
   /// By default, [BestFitConversion] uses the decimal numeral system, returning
   /// units KB, MB, GB, etc.
-  const BestFitConversion({required this.numeralSystem}) : super._();
+  const BestFitConversion({required this.numeralSystem});
 
   @override
   Unit bitsToUnit({required BigInt bits}) {
@@ -45,20 +37,4 @@ class BestFitConversion extends UnitConversion {
 
     return Unit.bit;
   }
-}
-
-/// The size is converted to a specific unit, regardless of the magnitude of the
-/// data.
-///
-/// For example, using [Unit.byte], given a file 3 MB large, the file size will
-/// be given as 3,000,000 bytes.
-class SpecificUnitConversion extends UnitConversion {
-  /// The unit to convert the size to.
-  final Unit unit;
-
-  /// Returns an instance of [SpecificUnitConversion].
-  const SpecificUnitConversion({required this.unit}) : super._();
-
-  @override
-  Unit bitsToUnit({required BigInt bits}) => unit;
 }
