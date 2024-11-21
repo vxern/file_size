@@ -1,14 +1,4 @@
-/// The default number format is [SimpleOutputFormatter].
-const defaultOutputFormatter = SimpleOutputFormatter();
-
-/// Defines how to format the output.
-abstract class OutputFormatter {
-  /// Returns an instance of [OutputFormatter].
-  const OutputFormatter();
-
-  /// Given a [quantity] and a [unit], formats them as a human-readable string.
-  String format({required String quantity, required String unit});
-}
+import 'package:human_file_size/src/output_formatters/output_formatter.dart';
 
 /// The quantity and unit are formatted as '${quantity} ${unit}'.
 class SimpleOutputFormatter extends OutputFormatter {
