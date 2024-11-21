@@ -11,7 +11,7 @@ import 'package:human_file_size/src/unit.dart';
 /// respectively.
 ///
 /// Example units include Kibibits (Kib/Kibit) and Mebibytes (MiB/Mibyte).
-class BinarySystem extends NumeralSystem {
+class BinaryNumeralSystem extends NumeralSystem {
   static final List<Unit> _units = List.unmodifiable([
     Unit.bit,
     Unit.byte,
@@ -36,6 +36,10 @@ class BinarySystem extends NumeralSystem {
   @override
   List<Unit> get units => _units;
 
-  /// Returns an instance of [BinarySystem].
-  const BinarySystem();
+  /// Returns an instance of [BinaryNumeralSystem].
+  const BinaryNumeralSystem();
 }
+
+/// Alias of [BinaryNumeralSystem].
+@Deprecated('Use [BinaryNumeralSystem] instead.')
+typedef BinarylSystem = BinaryNumeralSystem;

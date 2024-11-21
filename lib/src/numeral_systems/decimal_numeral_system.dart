@@ -11,7 +11,7 @@ import 'package:human_file_size/src/unit.dart';
 /// Prefixes are abbreviated as K, M, G, T, P, E, Z, and Y respectively.
 ///
 /// Example units include Kilobits (Kb/Kbit) and Megabytes (MB/Mbyte).
-class DecimalSystem extends NumeralSystem {
+class DecimalNumeralSystem extends NumeralSystem {
   static final List<Unit> _units = List.unmodifiable([
     Unit.bit,
     Unit.byte,
@@ -36,6 +36,10 @@ class DecimalSystem extends NumeralSystem {
   @override
   List<Unit> get units => _units;
 
-  /// Returns an instance of [DecimalSystem].
-  const DecimalSystem();
+  /// Returns an instance of [DecimalNumeralSystem].
+  const DecimalNumeralSystem();
 }
+
+/// Alias of [DecimalNumeralSystem].
+@Deprecated('Use [DecimalNumeralSystem] instead.')
+typedef DecimalSystem = DecimalNumeralSystem;
