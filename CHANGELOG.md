@@ -3,6 +3,14 @@
 - Split up the previously monolithic files into a file per class.
 - Split up test files to match the layout of the codebase.
 - Moved defaults into a new file `defaults.dart`.
+- Renamed:
+  - `BinarySystem` -> `BinaryNumeralSystem`
+  - `DecimalSystem` -> `DecimalNumeralSystem`
+  - `BestFitConversion` -> `BestFitUnitConversion`
+  - `LongLowercaseStyle` -> `LongLowercaseUnitStyle`
+  - `LongUppercaseStyle` -> `LongUppercaseUnitStyle`
+  - `ShortLowercaseStyle` -> `ShortLowercaseUnitStyle`
+  - `ShortUppercaseStyle` -> `ShortUppercaseUnitStyle`
 
 ## 0.5.1
 
