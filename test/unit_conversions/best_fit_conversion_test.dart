@@ -1,8 +1,8 @@
 import 'package:decimal/decimal.dart';
 import 'package:human_file_size/src/defaults.dart';
 import 'package:human_file_size/src/human_file_size.dart';
-import 'package:human_file_size/src/numeral_systems/binary_system.dart';
-import 'package:human_file_size/src/unit_conversions/best_fit_conversion.dart';
+import 'package:human_file_size/src/numeral_systems/binary_numeral_system.dart';
+import 'package:human_file_size/src/unit_conversions/best_fit_unit_conversion.dart';
 import 'package:test/test.dart';
 
 import '../utils.dart';
@@ -58,8 +58,8 @@ void main() {
       expect(
         humanFileSize(
           1024,
-          unitConversion: const BestFitConversion(
-            numeralSystem: BinarySystem(),
+          unitConversion: const BestFitUnitConversion(
+            numeralSystem: BinaryNumeralSystem(),
           ),
         ),
         equals('1 KiB'),
