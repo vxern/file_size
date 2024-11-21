@@ -81,14 +81,14 @@ import 'package:intl/intl.dart';
 /// the documentation for [UnitStyle].
 ///
 /// ```dart
-/// humanFileSize(1000, unitStyle: const ShortLowercaseStyle()); // 1 kB
+/// humanFileSize(1000, unitStyle: const ShortLowercaseUnitStyle()); // 1 kB
 ///
 /// // This is the default.
-/// humanFileSize(1000, unitStyle: const ShortUppercaseStyle()); // 1 KB
+/// humanFileSize(1000, unitStyle: const ShortUppercaseUnitStyle()); // 1 KB
 ///
-/// humanFileSize(1000, unitStyle: const LongLowercaseStyle()); // 1 kbyte
+/// humanFileSize(1000, unitStyle: const LongLowercaseUnitStyle()); // 1 kbyte
 ///
-/// humanFileSize(1000, unitStyle: const LongUppercaseStyle()); // 1 Kbyte
+/// humanFileSize(1000, unitStyle: const LongUppercaseUnitStyle()); // 1 Kbyte
 /// ```
 ///
 /// To specify the method by which to obtain the output format, provide a value

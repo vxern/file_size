@@ -70,7 +70,8 @@ void main() {
   });
 
   group('unit conversion', () {
-    test('takes [unitConversion] to be [BestFitConversion] by default.', () {
+    test('takes [unitConversion] to be [BestFitUnitConversion] by default.',
+        () {
       expect(humanFileSize(1000 * 1000 * 1000), equals('1 GB'));
     });
 
@@ -109,13 +110,13 @@ void main() {
   });
 
   group('unit style', () {
-    test('takes [unitStyle] to be [ShortUppercaseStyle] by default.', () {
+    test('takes [unitStyle] to be [ShortUppercaseUnitStyle] by default.', () {
       expect(humanFileSize(1000), equals('1 KB'));
     });
 
     test('takes [unitStyle] into account.', () {
       expect(
-        humanFileSize(1000, unitStyle: const ShortLowercaseStyle()),
+        humanFileSize(1000, unitStyle: const ShortLowercaseUnitStyle()),
         equals('1 kB'),
       );
     });
