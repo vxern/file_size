@@ -87,7 +87,7 @@ humanFileSize(
 ); // 1 KiB
 ```
 
-By default, `humanFileSize()` converts to the short, uppercase style (`unitStyle: const ShortUppercaseStyleConversion()`). You may specify otherwise by passing a different value to `unitStyle`:
+By default, `humanFileSize()` converts to the short, uppercase style (`unitStyle: const ShortUppercaseStyle()`). You may specify otherwise by passing a different value to `unitStyle`:
 
 ```dart
 humanFileSize(1, inputUnit: Unit.gigabit); // Gb
