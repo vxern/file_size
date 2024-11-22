@@ -11,6 +11,19 @@
   - `LongUppercaseStyle` -> `LongUppercaseUnitStyle`
   - `ShortLowercaseStyle` -> `ShortLowercaseUnitStyle`
   - `ShortUppercaseStyle` -> `ShortUppercaseUnitStyle`
+- Added namespaced, enum-like constructors:
+  - `NumeralSystem.binary()`
+  - `NumeralSystem.decimal()`
+  - `OutputFormat.simple()`
+  - `QuantityDisplayMode.custom()`
+  - `QuantityDisplayMode.intl()`
+  - `QuantityDisplayMode.simple()`
+  - `UnitConversion.bestFit()`
+  - `UnitConversion.specific()`
+  - `UnitStyle.longLowercase()`
+  - `UnitStyle.longUppercase()`
+  - `UnitStyle.shortLowercase()`
+  - `UnitStyle.shortUppercase()`
 
 ## 0.5.1
 

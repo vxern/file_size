@@ -41,8 +41,8 @@ import 'package:intl/intl.dart';
 /// // We might want to use binary units instead:
 /// humanFileSize(
 ///   1024,
-///   unitConversion: const BestFitUnitConversion(
-///     numeralSystem: BinaryNumeralSystem(),
+///   unitConversion: const UnitConversion.bestFit(
+///     numeralSystem: NumeralSystem.binary(),
 ///   ),
 /// ); // 1 KiB
 /// ```
@@ -59,17 +59,17 @@ import 'package:intl/intl.dart';
 ///
 /// humanFileSize(
 ///   1500,
-///   quantityDisplayMode: const SimpleQuantityDisplayMode(round: true),
+///   quantityDisplayMode: const QuantityDisplayMode.simple(round: true),
 /// ); // 2 KB
 ///
 /// humanFileSize(
 ///   1500,
-///   quantityDisplayMode: const SimpleQuantityDisplayMode(truncate: true),
+///   quantityDisplayMode: const QuantityDisplayMode.simple(truncate: true),
 /// ); // 1 KB
 ///
 /// humanFileSize(
 ///   1.234,
-///   quantityDisplayMode: IntlQuantityDisplayMode(
+///   quantityDisplayMode: QuantityDisplayMode.intl(
 ///     numberFormat: NumberFormat.decimalPattern('pl'),
 ///   ),
 /// ); // 1,234 B
@@ -81,14 +81,14 @@ import 'package:intl/intl.dart';
 /// the documentation for [UnitStyle].
 ///
 /// ```dart
-/// humanFileSize(1000, unitStyle: const ShortLowercaseUnitStyle()); // 1 kB
+/// humanFileSize(1000, unitStyle: const UnitStyle.shortLowercase()); // 1 kB
 ///
 /// // This is the default.
-/// humanFileSize(1000, unitStyle: const ShortUppercaseUnitStyle()); // 1 KB
+/// humanFileSize(1000, unitStyle: const UnitStyle.shortUppercase()); // 1 KB
 ///
-/// humanFileSize(1000, unitStyle: const LongLowercaseUnitStyle()); // 1 kbyte
+/// humanFileSize(1000, unitStyle: const UnitStyle.longLowercase()); // 1 kbyte
 ///
-/// humanFileSize(1000, unitStyle: const LongUppercaseUnitStyle()); // 1 Kbyte
+/// humanFileSize(1000, unitStyle: const UnitStyle.longUppercase()); // 1 Kbyte
 /// ```
 ///
 /// To specify the method by which to obtain the output format, provide a value
@@ -100,12 +100,12 @@ import 'package:intl/intl.dart';
 ///
 /// humanFileSize(
 ///   1,
-///   outputFormatter: const SimpleOutputFormatter(includeSpace: false),
+///   outputFormatter: const OutputFormatter.simple(includeSpace: false),
 /// ); // 1B
 ///
 /// humanFileSize(
 ///   1,
-///   outputFormatter: const SimpleOutputFormatter(unitFirst: true),
+///   outputFormatter: const OutputFormatter.simple(unitFirst: true),
 /// ); // B 1
 /// ```
 /// {@endtemplate}

@@ -7,6 +7,6 @@ void main() {
   // 1000 bytes -> 8000 bits
   humanFileSize(
     1000,
-    unitConversion: SpecificUnitConversion(unit: Unit.bit),
+    unitConversion: UnitConversion.specific(unit: Unit.bit),
   ); // 8000 b
 }

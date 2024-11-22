@@ -4,8 +4,8 @@ void main() {
   // 1024 bytes -> 1 kibibyte
   humanFileSize(
     1024,
-    unitConversion: const BestFitUnitConversion(
-      numeralSystem: BinaryNumeralSystem(),
+    unitConversion: const UnitConversion.bestFit(
+      numeralSystem: NumeralSystem.binary(),
     ),
   ); // 1 KiB
 }
