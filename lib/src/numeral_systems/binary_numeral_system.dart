@@ -1,6 +1,7 @@
 import 'package:human_file_size/src/numeral_systems/numeral_system.dart';
 import 'package:human_file_size/src/unit.dart';
 
+/// {@template BinaryNumeralSystem}
 /// The binary numeral system with the factor between sequential magnitudes
 /// being 1024 or 2^10. Commonly used in Linux systems.
 ///
@@ -11,6 +12,7 @@ import 'package:human_file_size/src/unit.dart';
 /// respectively.
 ///
 /// Example units include Kibibits (Kib/Kibit) and Mebibytes (MiB/Mibyte).
+/// {@endtemplate}
 class BinaryNumeralSystem extends NumeralSystem {
   static final List<Unit> _units = List.unmodifiable([
     Unit.bit,

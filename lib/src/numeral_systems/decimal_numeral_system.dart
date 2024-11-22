@@ -1,6 +1,7 @@
 import 'package:human_file_size/src/numeral_systems/numeral_system.dart';
 import 'package:human_file_size/src/unit.dart';
 
+/// {@template DecimalNumeralSystem}
 /// The decimal numeral system with the factor between sequential magnitudes
 /// being 1000 or 10^3. This is the common system used to represent sizes of
 /// data for regular users.
@@ -11,6 +12,7 @@ import 'package:human_file_size/src/unit.dart';
 /// Prefixes are abbreviated as K, M, G, T, P, E, Z, and Y respectively.
 ///
 /// Example units include Kilobits (Kb/Kbit) and Megabytes (MB/Mbyte).
+/// {@endtemplate}
 class DecimalNumeralSystem extends NumeralSystem {
   static final List<Unit> _units = List.unmodifiable([
     Unit.bit,

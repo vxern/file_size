@@ -1,4 +1,4 @@
-import 'package:human_file_size/src/unit.dart';
+import 'package:human_file_size/human_file_size.dart';
 
 /// Represents the numeral system of units.
 abstract class NumeralSystem {
@@ -7,4 +7,10 @@ abstract class NumeralSystem {
 
   /// Returns an instance of [NumeralSystem].
   const NumeralSystem();
+
+  /// {@macro BinaryNumeralSystem}
+  const factory NumeralSystem.binary() = BinaryNumeralSystem;
+
+  /// {@macro DecimalNumeralSystem}
+  const factory NumeralSystem.decimal() = DecimalNumeralSystem;
 }
