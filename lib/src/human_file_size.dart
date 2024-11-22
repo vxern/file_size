@@ -203,7 +203,7 @@ const fileSizeToString = humanFileSize;
 /// 10.humanFileSize(); // 10 B
 ///
 /// // Double
-/// 10.0.humanFileSize(); // 10 B
+/// 12.3.humanFileSize(); // 12.3 B
 /// ```
 extension NumHumanFileSize on num {
   /// Takes this [num] as the quantity of data, before formatting it as a
