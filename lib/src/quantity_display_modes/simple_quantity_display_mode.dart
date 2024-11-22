@@ -2,8 +2,10 @@ import 'package:decimal/decimal.dart';
 import 'package:human_file_size/src/quantity_display_modes/quantity_display_mode.dart';
 import 'package:human_file_size/src/unit.dart';
 
+/// {@template IntlQuantityDisplayMode}
 /// The quantity is displayed using basic calls to [Decimal.toString] and
 /// [Decimal.toStringAsFixed].
+/// {@endtemplate}
 class SimpleQuantityDisplayMode extends QuantityDisplayMode {
   /// Specifies whether to round the quantity before formatting.
   final bool round;

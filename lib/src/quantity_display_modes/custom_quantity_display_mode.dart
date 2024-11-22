@@ -9,7 +9,9 @@ typedef QuantityFormatter = String Function(
   required Unit unit,
 });
 
+/// {@template CustomQuantityDisplayMode}
 /// The quantity passes through a custom converter to get its display format.
+/// {@endtemplate}
 @Deprecated(
   'Create your own concrete implementation of [QuantityDisplayMode].',
 )

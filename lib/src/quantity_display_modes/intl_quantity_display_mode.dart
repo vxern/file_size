@@ -5,7 +5,9 @@ import 'package:human_file_size/src/quantity_display_modes/quantity_display_mode
 import 'package:human_file_size/src/unit.dart';
 import 'package:intl/intl.dart';
 
+/// {@template IntlQuantityDisplayMode}
 /// The quantity is formatted using `intl`'s [NumberFormat].
+/// {@endtemplate}
 class IntlQuantityDisplayMode extends QuantityDisplayMode {
   /// The [NumberFormat] used to format the quantity.
   final NumberFormat numberFormat;
