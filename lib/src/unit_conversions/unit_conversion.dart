@@ -11,11 +11,11 @@ abstract class UnitConversion {
   /// Given a size in [bits], returns a [Unit] to represent it
   Unit bitsToUnit({required BigInt bits});
 
-  /// {@macro SimpleQuantityDisplayMode}
+  /// {@macro BestFitUnitConversion}
   const factory UnitConversion.bestFit({required NumeralSystem numeralSystem}) =
       BestFitUnitConversion;
 
-  /// {@macro SimpleQuantityDisplayMode}
+  /// {@macro SpecificUnitConversion}
   const factory UnitConversion.specific({required Unit unit}) =
       SpecificUnitConversion;
 }
