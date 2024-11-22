@@ -4,6 +4,7 @@ import 'package:human_file_size/src/numeral_systems/numeral_system.dart';
 import 'package:human_file_size/src/unit.dart';
 import 'package:human_file_size/src/unit_conversions/unit_conversion.dart';
 
+/// {@template BestFitUnitConversion}
 /// The size is converted to the largest possible unit that most accurately
 /// describes its magnitude, subject to the [NumeralSystem] used. The conversion
 /// works identically for negative values.
@@ -17,6 +18,7 @@ import 'package:human_file_size/src/unit_conversions/unit_conversion.dart';
 /// file 512 gibibytes large, the conversion will give the file size in
 /// gibibytes. On the other hand, given a file 1024 gibibytes large, the
 /// conversion will give the file size in tebibytes.
+/// {@endtemplate}
 class BestFitUnitConversion extends UnitConversion {
   /// The numeral system of the candidate units for conversion.
   final NumeralSystem numeralSystem;

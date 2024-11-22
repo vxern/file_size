@@ -1,11 +1,13 @@
 import 'package:human_file_size/src/unit.dart';
 import 'package:human_file_size/src/unit_conversions/unit_conversion.dart';
 
-/// The size is converted to a specific unit, regardless of the magnitude of the
+/// {@template SpecificUnitConversion}
+// The size is converted to a specific unit, regardless of the magnitude of the
 /// data.
 ///
 /// For example, using [Unit.byte], given a file 3 MB large, the file size will
 /// be given as 3,000,000 bytes.
+/// {@endtemplate}
 class SpecificUnitConversion extends UnitConversion {
   /// The unit to convert the size to.
   final Unit unit;
