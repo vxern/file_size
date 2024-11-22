@@ -47,7 +47,7 @@ humanFileSize(1000, inputUnit: Unit.kilobit); // 1 Mb
 
 The library provides decimal and binary units starting at bit and byte, then following through prefixes kilo-, mega-, giga-, tera-, peta-, exa-, zeta- and yota-. Custom units are supported.
 
-By default, `humanFileSize()` converts to the largest unit possible (`unitConversion: const BestFitConversion()`). You may specify otherwise by passing a different value for `unitConversion`:
+By default, `humanFileSize()` converts to the largest unit possible (`unitConversion: const BestFitUnitConversion()`). You may specify otherwise by passing a different value for `unitConversion`:
 
 ```dart
 // 1000 bytes -> 1 kilobyte
@@ -75,19 +75,19 @@ humanFileSize(
 ); // 1,234 B
 ```
 
-You may also specify the numeral system used when using `BestFitConversion()`. The library has two built-in numeral systems: decimal and binary. To set the numeral system, pass a `numeralSystem` into `BestFitConversion()`:
+You may also specify the numeral system used when using `BestFitUnitConversion()`. The library has two built-in numeral systems: decimal and binary. To set the numeral system, pass a `numeralSystem` into `BestFitUnitConversion()`:
 
 ```dart
 // 1024 bytes -> 1 kibibyte
 humanFileSize(
   1024,
-  unitConversion: const BestFitConversion(
-    numeralSystem: BinarySystem(),
+  unitConversion: const BestFitUnitConversion(
+    numeralSystem: BinaryNumeralSystem(),
   ),
 ); // 1 KiB
 ```
 
-By default, `humanFileSize()` converts to the short, uppercase style (`unitStyle: const ShortUppercaseStyleConversion()`). You may specify otherwise by passing a different value to `unitStyle`:
+By default, `humanFileSize()` converts to the short, uppercase style (`unitStyle: const ShortUppercaseUnitStyle()`). You may specify otherwise by passing a different value to `unitStyle`:
 
 ```dart
 humanFileSize(1, inputUnit: Unit.gigabit); // Gb
@@ -95,19 +95,19 @@ humanFileSize(1, inputUnit: Unit.gigabit); // Gb
 humanFileSize(
   1,
   inputUnit: Unit.gigabit,
-  unitStyle: const ShortLowercaseStyle(),
+  unitStyle: const ShortLowercaseUnitStyle(),
 ); // gb
 
 humanFileSize(
   1,
   inputUnit: Unit.gigabit,
-  unitStyle: const LongLowercaseStyle(),
+  unitStyle: const LongLowercaseUnitStyle(),
 ); // gbit
 
 humanFileSize(
   1,
   inputUnit: Unit.gigabit,
-  unitStyle: const LongUppercaseStyle(),
+  unitStyle: const LongUppercaseUnitStyle(),
 ); // Gbit
 ```
 

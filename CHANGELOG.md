@@ -1,3 +1,30 @@
+## 0.6.0
+
+- Split up the previously monolithic files into a file per class.
+- Split up test files to match the layout of the codebase.
+- Moved defaults into a new file `defaults.dart`.
+- Renamed:
+  - `BinarySystem` -> `BinaryNumeralSystem`
+  - `DecimalSystem` -> `DecimalNumeralSystem`
+  - `BestFitConversion` -> `BestFitUnitConversion`
+  - `LongLowercaseStyle` -> `LongLowercaseUnitStyle`
+  - `LongUppercaseStyle` -> `LongUppercaseUnitStyle`
+  - `ShortLowercaseStyle` -> `ShortLowercaseUnitStyle`
+  - `ShortUppercaseStyle` -> `ShortUppercaseUnitStyle`
+- Added namespaced, enum-like constructors:
+  - `NumeralSystem.binary()`
+  - `NumeralSystem.decimal()`
+  - `OutputFormat.simple()`
+  - `QuantityDisplayMode.custom()`
+  - `QuantityDisplayMode.intl()`
+  - `QuantityDisplayMode.simple()`
+  - `UnitConversion.bestFit()`
+  - `UnitConversion.specific()`
+  - `UnitStyle.longLowercase()`
+  - `UnitStyle.longUppercase()`
+  - `UnitStyle.shortLowercase()`
+  - `UnitStyle.shortUppercase()`
+
 ## 0.5.1
 
 - Added missing piece of documentation.

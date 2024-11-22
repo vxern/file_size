@@ -5,12 +5,12 @@ void main() {
 
   humanFileSize(
     1,
-    outputFormatter: const SimpleOutputFormatter(includeSpace: false),
+    outputFormatter: const OutputFormatter.simple(includeSpace: false),
   ); // 1B
 
   humanFileSize(
     1,
-    outputFormatter: const SimpleOutputFormatter(unitFirst: true),
+    outputFormatter: const OutputFormatter.simple(unitFirst: true),
   ); // B 1
 
   humanFileSize(1, outputFormatter: const UnitOnlyOutputFormatter()); // B

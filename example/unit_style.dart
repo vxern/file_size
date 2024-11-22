@@ -6,18 +6,18 @@ void main() {
   humanFileSize(
     1,
     inputUnit: Unit.gigabit,
-    unitStyle: const ShortLowercaseStyle(),
+    unitStyle: const UnitStyle.shortLowercase(),
   ); // gb
 
   humanFileSize(
     1,
     inputUnit: Unit.gigabit,
-    unitStyle: const LongLowercaseStyle(),
+    unitStyle: const UnitStyle.longLowercase(),
   ); // gbit
 
   humanFileSize(
     1,
     inputUnit: Unit.gigabit,
-    unitStyle: const LongUppercaseStyle(),
+    unitStyle: const UnitStyle.longUppercase(),
   ); // Gbit
 }

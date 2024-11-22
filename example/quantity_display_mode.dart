@@ -8,7 +8,7 @@ void main() {
   // `IntlQuantityDisplayMode` can be used for localisation.
   humanFileSize(
     1.234,
-    quantityDisplayMode: IntlQuantityDisplayMode(
+    quantityDisplayMode: QuantityDisplayMode.intl(
       numberFormat: NumberFormat.decimalPattern('pl'),
     ),
   ); // 1,234 B
