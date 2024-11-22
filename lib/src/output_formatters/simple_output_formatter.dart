@@ -1,6 +1,8 @@
 import 'package:human_file_size/src/output_formatters/output_formatter.dart';
 
+/// {@template SimpleOutputFormatter}
 /// The quantity and unit are formatted as '${quantity} ${unit}'.
+/// {@endtemplate}
 class SimpleOutputFormatter extends OutputFormatter {
   /// If enabled, there will be a space in-between the quantity and unit.
   final bool includeSpace;
