@@ -3,10 +3,10 @@ import 'package:test/test.dart';
 import 'utils.dart';
 
 void main() {
-  group('getWindows()', () {
+  group('windows()', () {
     test('produces overlapping lists of the given size.', () {
       expect(
-        getWindows([1, 2, 3, 4], size: 2),
+        [1, 2, 3, 4].windows(2),
         equals(
           [
             [1, 2],
@@ -16,7 +16,7 @@ void main() {
         ),
       );
       expect(
-        getWindows([1, 2, 3, 4], size: 3),
+        [1, 2, 3, 4].windows(3),
         equals(
           [
             [1, 2, 3],
@@ -28,7 +28,7 @@ void main() {
 
     test('produces single-element lists if the size is 1.', () {
       expect(
-        getWindows([1, 2, 3], size: 1),
+        [1, 2, 3].windows(1),
         equals(
           [
             [1],
