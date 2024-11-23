@@ -7,9 +7,7 @@ extension IterableExtension<T> on Iterable<T> {
     }
 
     if (size > length) {
-      throw StateError(
-        'The size must not be larger than the number of elements.',
-      );
+      throw StateError('The size must not exceed the number of elements.');
     }
 
     final iterator = this.iterator;
