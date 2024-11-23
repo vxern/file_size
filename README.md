@@ -45,7 +45,7 @@ humanFileSize(1000, inputUnit: Unit.bit); // 1 Kb
 humanFileSize(1000, inputUnit: Unit.kilobit); // 1 Mb
 ```
 
-The library provides decimal and binary units starting at bit and byte, then following through prefixes kilo-, mega-, giga-, tera-, peta-, exa-, zeta- and yota-. Custom units are supported.
+The library provides decimal and binary units starting at bit and byte, then following through prefixes kilo-, mega-, giga-, tera-, peta-, exa-, zeta- and yotta-. Custom units are supported.
 
 By default, `humanFileSize()` converts to the largest unit possible (`unitConversion: const BestFitUnitConversion()`). You may specify otherwise by passing a different value for `unitConversion`:
 

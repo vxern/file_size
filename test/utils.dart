@@ -1,28 +1,28 @@
-List<List<T>> getWindows<T>(List<T> elements, {required int size}) {
-  assert(size >= 1, 'The size must be at least 1.');
-  assert(
-    size < elements.length,
-    'The size must not be larger than the number of elements.',
-  );
+import 'package:human_file_size/src/unit.dart';
 
-  final previousElementsCount = ((size - 1) / 2).round();
-  final nextElementsCount = (size - 1) - previousElementsCount;
+extension IterableExtension<T> on Iterable<T> {
+  Iterable<List<T>> windows(int size) sync* {
+    if (size <= 0) {
+      throw StateError('The size must be a positive, non-zero integer.');
+    }
 
-  final windows = <List<T>>[];
-  for (var index = previousElementsCount;
-      index < elements.length - nextElementsCount;
-      index += 1) {
-    final previousElements = elements.sublist(
-      index - previousElementsCount,
-      index,
-    );
-    final nextElements = elements.sublist(
-      index + 1,
-      index + 1 + nextElementsCount,
-    );
+    if (size > length) {
+      throw StateError('The size must not exceed the number of elements.');
+    }
 
-    windows.add([...previousElements, elements[index], ...nextElements]);
+    final iterator = this.iterator;
+    final window = <T>[];
+    while (iterator.moveNext()) {
+      window.add(iterator.current);
+      if (window.length != size) {
+        continue;
+      }
+
+      yield [...window];
+
+      window.removeAt(0);
+    }
   }
-
-  return windows;
 }
+
+int getFactor(Unit previous, Unit next) => (next.bits ~/ previous.bits).toInt();

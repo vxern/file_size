@@ -1,5 +1,5 @@
 name: human_file_size
-version: 0.6.0
+version: 0.6.1
 
 description: >-
   A robust, customisable package to get a human representation of the size of
@@ -17,5 +17,6 @@ dependencies:
   intl: ^0.19.0
 
 dev_dependencies:
+  collection: ^1.18.0
   test: ^1.25.7
   words: ^0.4.4
