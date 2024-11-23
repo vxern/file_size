@@ -5,31 +5,64 @@ import 'package:test/test.dart';
 
 void main() {
   group('format()', () {
-    test(
-      'if [round] is true, rounds the quantity to the nearest whole number.',
-      () {
-        expect(
-          const SimpleQuantityDisplayMode(round: true).format(
-            Decimal.parse('1.5'),
-            unit: Unit.byte,
-          ),
-          '2',
-        );
-      },
-    );
+    group('[round]', () {
+      test(
+        'when enabled, rounds the quantity to the nearest whole number.',
+        () {
+          expect(
+            const SimpleQuantityDisplayMode(round: true).format(
+              Decimal.parse('1.5'),
+              unit: Unit.byte,
+            ),
+            '2',
+          );
+        },
+      );
 
-    test(
-      'if [truncate] is true, truncates the quantity.',
-      () {
-        expect(
-          const SimpleQuantityDisplayMode(truncate: true).format(
-            Decimal.parse('1.5'),
-            unit: Unit.byte,
-          ),
-          '1',
-        );
-      },
-    );
+      test(
+        'when disabled, does not round the quantity to the nearest whole '
+        'number.',
+        () {
+          expect(
+            // ignore: avoid_redundant_argument_values
+            const SimpleQuantityDisplayMode(round: false).format(
+              Decimal.parse('1.5'),
+              unit: Unit.byte,
+            ),
+            '1.5',
+          );
+        },
+      );
+    });
+
+    group('[truncate]', () {
+      test(
+        'when enabled, truncates the quantity.',
+        () {
+          expect(
+            const SimpleQuantityDisplayMode(truncate: true).format(
+              Decimal.parse('1.5'),
+              unit: Unit.byte,
+            ),
+            '1',
+          );
+        },
+      );
+
+      test(
+        'when disabled, does not truncate the quantity.',
+        () {
+          expect(
+            // ignore: avoid_redundant_argument_values
+            const SimpleQuantityDisplayMode(truncate: false).format(
+              Decimal.parse('1.5'),
+              unit: Unit.byte,
+            ),
+            '1.5',
+          );
+        },
+      );
+    });
 
     test(
       'removes trailing zeroes from whole numbers.',
