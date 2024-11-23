@@ -1,6 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:decimal/decimal.dart';
 import 'package:human_file_size/src/numeral_systems/binary_numeral_system.dart';
-import 'package:human_file_size/src/unit.dart';
 import 'package:test/test.dart';
 
 import '../utils.dart';
@@ -13,37 +13,28 @@ void main() {
       expect(units.length.isEven, isTrue);
     });
 
-    test('the factor between units in pairs should be 8.', () {
-      for (final [a, b] in Iterable<List<Unit>>.generate(
-        units.length ~/ 2,
-        (index) => units.sublist(index * 2, (index * 2) + 2),
-      )) {
-        expect(
-          (b.bits.toDecimal() / a.bits.toDecimal()).toDecimal(),
-          equals(Decimal.fromInt(8)),
-        );
-      }
+    test('the factor between every unit in pairs should be 8.', () {
+      final factors = units.slices(2).map(
+            (pair) => (pair.last.bits.toDecimal() / pair.first.bits.toDecimal())
+                .toDecimal(),
+          );
+
+      expect(factors, everyElement(equals(Decimal.fromInt(8))));
     });
 
     test(
-      'the factor for the every other unit should be 1024.',
+      'the factor between every 2nd unit should be 1024.',
       () {
-        final bitBased = <Unit>[];
-        final byteBased = <Unit>[];
-        for (final index in Iterable<int>.generate(units.length)) {
-          if (index.isEven) {
-            bitBased.add(units[index]);
-          } else {
-            byteBased.add(units[index]);
-          }
-        }
+        final factors = [
+          units.whereIndexed((index, _) => index.isEven),
+          units.whereIndexed((index, _) => index.isOdd),
+        ].map((units) => units.toList().windows(2)).flattened.map(
+              (pair) =>
+                  (pair.last.bits.toDecimal() / pair.first.bits.toDecimal())
+                      .toDecimal(),
+            );
 
-        for (final [a, b] in getWindows(bitBased, size: 2)) {
-          expect(
-            (b.bits.toDecimal() / a.bits.toDecimal()).toDecimal(),
-            equals(Decimal.fromInt(1024)),
-          );
-        }
+        expect(factors, everyElement(equals(Decimal.fromInt(1024))));
       },
     );
   });

@@ -13,9 +13,9 @@ void main() {
       'displays the size in the unit that most accurately describes its '
       'magnitude.',
       () {
-        for (final [previous, current, next] in getWindows(
-          defaultUnitConversion.numeralSystem.units,
-          size: 3,
+        for (final [previous, current, next]
+            in defaultUnitConversion.numeralSystem.units.windows(
+          3,
         )) {
           // Check that if we don't meet the size of the unit, the function
           // falls back to the previous unit.

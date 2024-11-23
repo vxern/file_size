@@ -38,7 +38,7 @@ void main() {
           }
         }
 
-        for (final [a, b] in getWindows(bitBased, size: 2)) {
+        for (final [a, b] in bitBased.windows(2)) {
           expect(
             (b.bits.toDecimal() / a.bits.toDecimal()).toDecimal(),
             equals(Decimal.fromInt(1000)),
