@@ -1,3 +1,8 @@
+## 0.6.1
+
+- Added `collection` as a dev dependency.
+- Improved test suite by simplifying tests and adding more test cases.
+
 ## 0.6.0
 
 - Split up the previously monolithic files into a file per class.
