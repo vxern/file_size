@@ -1,13 +1,16 @@
-List<List<T>> getWindows<T>(List<T> elements, {required int size}) {
-  assert(
-    size < elements.length,
-    'The size must not be larger than the number of elements.',
-  );
+extension ListWindows<T> on List<T> {
+  List<List<T>> windows(int size) {
+    if (size >= length) {
+      throw StateError(
+        'The size must not be larger than the number of elements.',
+      );
+    }
 
-  final windows = <List<T>>[];
-  for (var index = 0; index < elements.length - (size - 1); index += 1) {
-    windows.add(elements.sublist(index, index + size));
+    final windows = <List<T>>[];
+    for (var index = 0; index < length - (size - 1); index += 1) {
+      windows.add(sublist(index, index + size));
+    }
+
+    return windows;
   }
-
-  return windows;
 }
