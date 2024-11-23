@@ -1,5 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:decimal/decimal.dart';
 import 'package:human_file_size/src/numeral_systems/binary_numeral_system.dart';
 import 'package:test/test.dart';
 
@@ -14,12 +13,10 @@ void main() {
     });
 
     test('the factor between every unit in pairs should be 8.', () {
-      final factors = units.slices(2).map(
-            (pair) => (pair.last.bits.toDecimal() / pair.first.bits.toDecimal())
-                .toDecimal(),
-          );
+      final factors =
+          units.slices(2).map((pair) => getFactor(pair.first, pair.last));
 
-      expect(factors, everyElement(equals(Decimal.fromInt(8))));
+      expect(factors, everyElement(equals(8)));
     });
 
     test(
@@ -28,13 +25,12 @@ void main() {
         final factors = [
           units.whereIndexed((index, _) => index.isEven),
           units.whereIndexed((index, _) => index.isOdd),
-        ].map((units) => units.toList().windows(2)).flattened.map(
-              (pair) =>
-                  (pair.last.bits.toDecimal() / pair.first.bits.toDecimal())
-                      .toDecimal(),
-            );
+        ]
+            .map((units) => units.toList().windows(2))
+            .flattened
+            .map((pair) => getFactor(pair.first, pair.last));
 
-        expect(factors, everyElement(equals(Decimal.fromInt(1024))));
+        expect(factors, everyElement(equals(1024)));
       },
     );
   });

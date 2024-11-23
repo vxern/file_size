@@ -1,6 +1,5 @@
-import 'package:decimal/decimal.dart';
+import 'package:collection/collection.dart';
 import 'package:human_file_size/src/numeral_systems/decimal_numeral_system.dart';
-import 'package:human_file_size/src/unit.dart';
 import 'package:test/test.dart';
 
 import '../utils.dart';
@@ -13,37 +12,25 @@ void main() {
       expect(units.length.isEven, isTrue);
     });
 
-    test('the factor between units in pairs should be 8.', () {
-      for (final [a, b] in Iterable<List<Unit>>.generate(
-        units.length ~/ 2,
-        (index) => units.sublist(index * 2, (index * 2) + 2),
-      )) {
-        expect(
-          (b.bits.toDecimal() / a.bits.toDecimal()).toDecimal(),
-          equals(Decimal.fromInt(8)),
-        );
-      }
+    test('the factor between every unit in pairs should be 8.', () {
+      final factors =
+          units.slices(2).map((pair) => getFactor(pair.first, pair.last));
+
+      expect(factors, everyElement(equals(8)));
     });
 
     test(
-      'the factor for the every other unit should be 1000.',
+      'the factor between every 2nd unit should be 1000.',
       () {
-        final bitBased = <Unit>[];
-        final byteBased = <Unit>[];
-        for (final index in Iterable<int>.generate(units.length)) {
-          if (index.isEven) {
-            bitBased.add(units[index]);
-          } else {
-            byteBased.add(units[index]);
-          }
-        }
+        final factors = [
+          units.whereIndexed((index, _) => index.isEven),
+          units.whereIndexed((index, _) => index.isOdd),
+        ]
+            .map((units) => units.toList().windows(2))
+            .flattened
+            .map((pair) => getFactor(pair.first, pair.last));
 
-        for (final [a, b] in bitBased.windows(2)) {
-          expect(
-            (b.bits.toDecimal() / a.bits.toDecimal()).toDecimal(),
-            equals(Decimal.fromInt(1000)),
-          );
-        }
+        expect(factors, everyElement(equals(1000)));
       },
     );
   });
