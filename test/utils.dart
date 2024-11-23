@@ -5,23 +5,9 @@ List<List<T>> getWindows<T>(List<T> elements, {required int size}) {
     'The size must not be larger than the number of elements.',
   );
 
-  final previousElementsCount = ((size - 1) / 2).round();
-  final nextElementsCount = (size - 1) - previousElementsCount;
-
   final windows = <List<T>>[];
-  for (var index = previousElementsCount;
-      index < elements.length - nextElementsCount;
-      index += 1) {
-    final previousElements = elements.sublist(
-      index - previousElementsCount,
-      index,
-    );
-    final nextElements = elements.sublist(
-      index + 1,
-      index + 1 + nextElementsCount,
-    );
-
-    windows.add([...previousElements, elements[index], ...nextElements]);
+  for (var index = 0; index < elements.length - (size - 1); index += 1) {
+    windows.add(elements.sublist(index, index + size));
   }
 
   return windows;
