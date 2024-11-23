@@ -1,19 +1,29 @@
 import 'package:human_file_size/src/unit.dart';
 
-extension ListWindows<T> on List<T> {
-  List<List<T>> windows(int size) {
-    if (size >= length) {
+extension IterableExtension<T> on Iterable<T> {
+  Iterable<List<T>> windows(int size) sync* {
+    if (size <= 0) {
+      throw StateError('The size must be a positive, non-zero integer.');
+    }
+
+    if (size > length) {
       throw StateError(
         'The size must not be larger than the number of elements.',
       );
     }
 
-    final windows = <List<T>>[];
-    for (var index = 0; index < length - (size - 1); index += 1) {
-      windows.add(sublist(index, index + size));
-    }
+    final iterator = this.iterator;
+    final window = <T>[];
+    while (iterator.moveNext()) {
+      window.add(iterator.current);
+      if (window.length != size) {
+        continue;
+      }
 
-    return windows;
+      yield [...window];
+
+      window.removeAt(0);
+    }
   }
 }
 
