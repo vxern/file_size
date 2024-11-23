@@ -1,5 +1,4 @@
 List<List<T>> getWindows<T>(List<T> elements, {required int size}) {
-  assert(size >= 1, 'The size must be at least 1.');
   assert(
     size < elements.length,
     'The size must not be larger than the number of elements.',
