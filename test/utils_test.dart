@@ -1,3 +1,4 @@
+import 'package:human_file_size/src/unit.dart';
 import 'package:test/test.dart';
 
 import 'utils.dart';
@@ -38,5 +39,21 @@ void main() {
         ),
       );
     });
+  });
+
+  group('getFactor()', () {
+    test(
+      'gets the factor between sizes of the [next] and the [previous] unit.',
+      () {
+        expect(getFactor(Unit.bit, Unit.byte), 8);
+      },
+    );
+
+    test(
+      'copes fine with very large units.',
+      () {
+        expect(getFactor(Unit.yottabit, Unit.yottabyte), 8);
+      },
+    );
   });
 }

@@ -1,3 +1,5 @@
+import 'package:human_file_size/src/unit.dart';
+
 extension ListWindows<T> on List<T> {
   List<List<T>> windows(int size) {
     if (size >= length) {
@@ -14,3 +16,5 @@ extension ListWindows<T> on List<T> {
     return windows;
   }
 }
+
+int getFactor(Unit previous, Unit next) => (next.bits ~/ previous.bits).toInt();
